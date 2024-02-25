@@ -2,9 +2,9 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Page404 from "./pages/404";
-import NavbarComponent from "./components/Navbar/Navbar";
 import { useEffect, useState } from "react";
 import { fetchUserInfo } from "./lib/api";
+import Cookies from "js-cookie";
 
 export interface UserInfo {
   id: number;
@@ -19,7 +19,7 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = Cookies.get("accessToken");
     if (accessToken) {
       fetchUserInfo(accessToken)
         .then((data) => setUserInfo(data))
@@ -30,8 +30,8 @@ const App = () => {
   }, [navigate]);
 
   const handleLogout = () => {
-    // Foydalanuvchi chiqib ketganda localStorage dan accessToken ni o'chirish
-    localStorage.removeItem("accessToken");
+    // Foydalanuvchi chiqib ketganda Cookie dan accessToken ni o'chirish
+    Cookies.remove("accessToken");
     // Foydalanuvchini ma'lumotlarini o'chirish
     setUserInfo(null);
 
@@ -41,10 +41,11 @@ const App = () => {
 
   return (
     <div>
-      <NavbarComponent userInfo={userInfo!} handleLogout={handleLogout} />
-
       <Routes>
-        <Route path="/" element={<Home userInfo={userInfo} />} />
+        <Route
+          path="/"
+          element={<Home userInfo={userInfo} handleLogout={handleLogout} />}
+        />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<Page404 />} />
       </Routes>

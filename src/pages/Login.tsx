@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import Cookies from "js-cookie";
 import { Card } from "@nextui-org/card";
 import { Button, Input, Spacer, Spinner } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +33,7 @@ export default function Login() {
 
       await handleGetUserInfo(accessToken);
 
-      localStorage.setItem("accessToken", accessToken);
+      Cookies.set("accessToken", accessToken, { expires: 7, secure: true });
 
       if (response.status === 201) {
         navigate("/");
