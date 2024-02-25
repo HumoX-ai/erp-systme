@@ -32,7 +32,7 @@ export default function Login() {
       console.log("Access token:", accessToken);
 
       await handleGetUserInfo(accessToken);
-
+      // Cookie ga saqlash sozlamalari
       Cookies.set("accessToken", accessToken, { expires: 7, secure: true });
 
       if (response.status === 201) {
@@ -93,7 +93,7 @@ export default function Login() {
             />
             <Spacer y={5} />
             <Button size="lg" color="primary" type="submit" fullWidth>
-              {loading ? <Spinner color="success" /> : "Kirish"}
+              {loading ? <Spinner color="white" /> : "Kirish"}
             </Button>
           </form>
         </Card>
