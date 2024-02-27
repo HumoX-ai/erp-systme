@@ -8,8 +8,7 @@ import Cookies from "js-cookie";
 import { UserInfo } from "./interfaces";
 import Layout from "./layout";
 import About from "./pages/AddItem";
-import NavbarComponent from "./components/navbar/Navbar";
-
+import { NavbarComponent } from "./components";
 
 const App = () => {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
