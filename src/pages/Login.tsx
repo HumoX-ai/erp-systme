@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { Card } from "@nextui-org/card";
 import { Button, Input, Spacer, Spinner } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
-
+import { Image } from "@nextui-org/react";
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 import axios from "axios";
 
 export default function Login() {
@@ -12,6 +13,13 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    document.title = "Tizimga kirish";
+  }, []);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,9 +75,14 @@ export default function Login() {
 
   return (
     <div className="container-xxl">
-      <div className="flex h-screen items-center justify-center">
-        <Card className="w-96 p-5">
-          <h1 className="text-3xl font-semibold text-center pb-4">Kirish</h1>
+      <div className="flex h-screen items-center justify-evenly flex-wrap">
+        <div className="hidden md:block">
+          <Image src="/logo2.svg" width={600} alt="logo" />
+        </div>
+        <div className="w-full md:w-2/5 p-5">
+          <h1 className="text-3xl font-semibold text-center pb-4">
+            Tizimga kirish
+          </h1>
           {error && <p className="text-red-500 pb-2">{error}</p>}
           <form onSubmit={handleSubmit}>
             <Input
@@ -83,20 +96,40 @@ export default function Login() {
             />
             <Spacer y={1} />
             <Input
-              type="password"
+              type={isVisible ? "text" : "password"}
               autoComplete="on"
               fullWidth
               size="md"
               label="Parol"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              endContent={
+                <button
+                  className="focus:outline-none"
+                  type="button"
+                  onClick={toggleVisibility}
+                >
+                  {isVisible ? (
+                    <FaRegEye className="text-2xl text-default-400 pointer-events-none" />
+                  ) : (
+                    <FaRegEyeSlash className="text-2xl text-default-400 pointer-events-none" />
+                  )}
+                </button>
+              }
             />
             <Spacer y={5} />
-            <Button size="lg" color="primary" type="submit" fullWidth>
+            <Button
+              variant="shadow"
+              isDisabled={loading}
+              size="lg"
+              color={error ? "danger" : "primary"}
+              type="submit"
+              fullWidth
+            >
               {loading ? <Spinner color="white" /> : "Kirish"}
             </Button>
           </form>
-        </Card>
+        </div>
       </div>
     </div>
   );

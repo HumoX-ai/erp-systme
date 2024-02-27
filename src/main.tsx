@@ -4,7 +4,6 @@ import App from "./App.tsx";
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { BrowserRouter } from "react-router-dom";
-
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
