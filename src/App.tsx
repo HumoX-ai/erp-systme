@@ -5,14 +5,10 @@ import Page404 from "./pages/404";
 import { useEffect, useState } from "react";
 import { fetchUserInfo } from "./lib/api";
 import Cookies from "js-cookie";
-
-export interface UserInfo {
-  id: number;
-  email: string;
-  name: string;
-  avatar: string;
-  role: string;
-}
+import { UserInfo } from "./interfaces";
+import Layout from "./layout";
+import About from "./pages/AddItem";
+import { NavbarComponent } from "./components";
 
 const App = () => {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
@@ -44,7 +40,29 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={<Home userInfo={userInfo} handleLogout={handleLogout} />}
+          element={
+            <Layout>
+              <NavbarComponent
+                userInfo={userInfo}
+                handleLogout={handleLogout}
+              />
+
+              <Home userInfo={userInfo} />
+            </Layout>
+          }
+        />
+        <Route
+          path="/items"
+          element={
+            <Layout>
+              <NavbarComponent
+                userInfo={userInfo}
+                handleLogout={handleLogout}
+              />
+
+              <About userInfo={userInfo} />
+            </Layout>
+          }
         />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<Page404 />} />

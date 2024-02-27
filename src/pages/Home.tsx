@@ -1,30 +1,28 @@
-import { Spinner } from "@nextui-org/react";
-import { UserInfo } from "../App";
-import NavbarComponent from "../components/Navbar/Navbar";
+import { ScrollShadow, Spinner } from "@nextui-org/react";
 
-const Home = ({
-  userInfo,
-  handleLogout,
-}: {
-  userInfo: UserInfo | null;
-  handleLogout: () => void;
-}) => {
+import { useEffect } from "react";
+import { UserInfo } from "../interfaces";
+
+const Home = ({ userInfo }: { userInfo: UserInfo | null }) => {
+  useEffect(() => {
+    document.title = "Asosiy sahifa";
+  }, []);
   return (
-    <div>
+    <ScrollShadow className="p-6 w-auto h-[90vh]" visibility="bottom">
       {!userInfo ? (
-        <Spinner className="h-screen flex items-center justify-center" />
+        <Spinner className="h-[90vh] flex items-center justify-center" />
       ) : (
         <>
-          <NavbarComponent userInfo={userInfo} handleLogout={handleLogout} />
           {userInfo && (
             <div>
               <p>Email: {userInfo.email}</p>
-              <p>RoleL {userInfo.role}</p>
+              <p>Name: {userInfo.name}</p>
+              <p>Role: {userInfo.role}</p>
             </div>
           )}
         </>
       )}
-    </div>
+    </ScrollShadow>
   );
 };
 

@@ -7,16 +7,16 @@ import {
   NavbarMenu,
   NavbarContent,
   NavbarItem,
-  Link,
   Dropdown,
   DropdownTrigger,
-  Avatar,
   DropdownMenu,
   DropdownItem,
+  Link,
+  User,
 } from "@nextui-org/react";
-import { Link as LinkTo } from "react-router-dom";
+import { Link as LinkTo, useNavigate } from "react-router-dom";
 import { ThemeSwitcher } from "../theme-switch/ThemeSwitcher";
-import { UserInfo } from "../../App";
+import { UserInfo } from "../../interfaces";
 
 export default function NavbarComponent({
   userInfo,
@@ -30,17 +30,26 @@ export default function NavbarComponent({
   console.log(userInfo);
 
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
+    {
+      label: "Bosh sahifa",
+      to: "/",
+    },
+    {
+      label: "Mahsulotlar",
+      to: "/items",
+    },
+    {
+      label: "Profil",
+      to: "/profil",
+    },
+    {
+      label: "Chiqish",
+      to: "/login",
+      onClick: handleLogout,
+    },
   ];
+
+  const navigate = useNavigate();
 
   return (
     <Navbar
@@ -66,24 +75,9 @@ export default function NavbarComponent({
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarBrand>
           <LinkTo to={"/"}>
-            <p className="font-bold text-inherit">ERP</p>
+            <p className="font-bold text-inherit">Bosh sahifa</p>
           </LinkTo>
         </NavbarBrand>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent justify="end">
@@ -93,14 +87,14 @@ export default function NavbarComponent({
         <NavbarItem>
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
-              <Avatar
-                isBordered
-                as="button"
+              <User
+                name={userInfo?.name || "User"}
+                description={userInfo?.role || "User"}
                 className="transition-transform"
-                color="secondary"
-                name={userInfo?.name}
-                size="sm"
-                src={userInfo?.avatar}
+                as="button"
+                avatarProps={{
+                  src: userInfo?.avatar,
+                }}
               />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">
@@ -128,6 +122,7 @@ export default function NavbarComponent({
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
+              onClick={() => navigate(item.to)}
               className="w-full"
               color={
                 index === 2
@@ -136,10 +131,9 @@ export default function NavbarComponent({
                   ? "danger"
                   : "foreground"
               }
-              href="#"
               size="lg"
             >
-              {item}
+              {item.label}
             </Link>
           </NavbarMenuItem>
         ))}
