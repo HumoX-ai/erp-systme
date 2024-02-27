@@ -7,14 +7,14 @@ import {
   NavbarMenu,
   NavbarContent,
   NavbarItem,
-  Link,
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+  Link,
   User,
 } from "@nextui-org/react";
-import { Link as LinkTo } from "react-router-dom";
+import { Link as LinkTo, useNavigate } from "react-router-dom";
 import { ThemeSwitcher } from "../theme-switch/ThemeSwitcher";
 import { UserInfo } from "../../interfaces";
 
@@ -30,17 +30,26 @@ export default function NavbarComponent({
   console.log(userInfo);
 
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
+    {
+      label: "Bosh sahifa",
+      to: "/",
+    },
+    {
+      label: "Mahsulotlar",
+      to: "/items",
+    },
+    {
+      label: "Profil",
+      to: "/profil",
+    },
+    {
+      label: "Chiqish",
+      to: "/login",
+      onClick: handleLogout,
+    },
   ];
+
+  const navigate = useNavigate();
 
   return (
     <Navbar
@@ -78,15 +87,6 @@ export default function NavbarComponent({
         <NavbarItem>
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
-              {/* <Avatar
-                isBordered
-                as="button"
-                className="transition-transform"
-                color="secondary"
-                name={userInfo?.name}
-                size="sm"
-                src={userInfo?.avatar}
-              /> */}
               <User
                 name={userInfo?.name || "User"}
                 description={userInfo?.role || "User"}
@@ -122,6 +122,7 @@ export default function NavbarComponent({
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
+              onClick={() => navigate(item.to)}
               className="w-full"
               color={
                 index === 2
@@ -130,10 +131,9 @@ export default function NavbarComponent({
                   ? "danger"
                   : "foreground"
               }
-              href="#"
               size="lg"
             >
-              {item}
+              {item.label}
             </Link>
           </NavbarMenuItem>
         ))}
