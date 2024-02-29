@@ -1,5 +1,5 @@
-import NavbarComponent from "./navbar/NavbarComponent";
-import { ThemeSwitcher } from "./theme-switch/ThemeSwitcher";
-import Sidebar from "./sidebar/Sidebar";
+import NavbarComponent from "./ui/Navbar/NavbarComponent";
+import { ThemeSwitcher } from "./ui/ThemeSwitch/ThemeSwitcher";
+import Sidebar from "./ui/Sidebar/Sidebar";
 
 export { NavbarComponent, ThemeSwitcher, Sidebar };
