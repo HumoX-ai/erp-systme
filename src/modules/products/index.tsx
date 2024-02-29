@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 import {
   Pagination,
   ScrollShadow,
@@ -10,11 +13,9 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
+import CustomLoading from "../../components/shared/Loading/Loading";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-const AddItem = () => {
+const Product = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
@@ -47,9 +48,7 @@ const AddItem = () => {
       ) : (
         <>
           <Table
-            className="w-full h-full overflow-auto "
-            aria-label="Example table with static content"
-            selectionMode="multiple"
+            selectionMode="none"
             bottomContent={
               <div className="flex w-full justify-end">
                 <Pagination
@@ -63,9 +62,6 @@ const AddItem = () => {
                 />
               </div>
             }
-            classNames={{
-              wrapper: "min-h-[222px]",
-            }}
           >
             <TableHeader>
               <TableColumn>#</TableColumn>
@@ -74,7 +70,11 @@ const AddItem = () => {
               <TableColumn>Tan narxi</TableColumn>
               <TableColumn>Sotilish narxi</TableColumn>
             </TableHeader>
-            <TableBody emptyContent={"Mahsulotlar mavjud emas"}>
+            <TableBody
+              emptyContent={"Mahsulotlar mavjud emas"}
+              isLoading={!newData?.length ? true : false}
+              loadingContent={<CustomLoading loading={true} />}
+            >
               {newData.map((item: any) => (
                 <TableRow key={item.id}>
                   <TableCell>{item.id}</TableCell>
@@ -92,4 +92,4 @@ const AddItem = () => {
   );
 };
 
-export default AddItem;
+export default Product;

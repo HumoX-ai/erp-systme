@@ -2,19 +2,21 @@ import { Switch } from "@nextui-org/switch";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { LuMoon, LuSun } from "react-icons/lu";
+import { useAuthStore } from "../../../store/auth";
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { setToken, session } = useAuthStore();
 
-  const saveTheme = (theme: string) => {
+  const saveTheme = (theme: "system" | "dark" | "light") => {
     if (theme === "system") return;
-    localStorage.setItem("theme", theme);
+    setToken({ theme: theme, signedIn: true });
   };
 
   const getTheme = () => {
     if (theme === "system") return;
-    return localStorage.getItem("theme");
+    return session.theme;
   };
 
   useEffect(() => {
