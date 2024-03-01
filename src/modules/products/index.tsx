@@ -18,7 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import ModalComponent from "../../components/ui/Modal/DeleteItem";
+import ModalComponent from "../../components/ui/Modal/AddItem";
 import { IProduct } from "./types";
 import SetItems from "../../components/ui/Modal/SetItems";
 
@@ -74,6 +74,7 @@ const Product = () => {
             <Button color="primary" onClick={() => setOpen(true)}>
               Maishiy texnika qo'shish
             </Button>
+            <ModalComponent open={open} setOpen={setOpen} setData={setData} />
             <SetItems
               open={change}
               setOpen={setChange}
@@ -81,10 +82,10 @@ const Product = () => {
               setData={setData}
               selectItem={selectItem!}
             />
-            <ModalComponent open={open} setOpen={setOpen} setData={setData} />
           </div>
-          <div className="overflow-x-scroll w-96">
+          <div>
             <Table
+              className="overflow-x-scroll max-w-[calc(100vw-50px)] "
               aria-label="table"
               bottomContent={
                 <div className="flex w-full justify-end">

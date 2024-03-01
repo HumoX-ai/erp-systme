@@ -89,12 +89,12 @@ export default function SetItems({
 
   return (
     <>
-      <Modal isOpen={open} onOpenChange={setOpen}>
+      <Modal isOpen={open} onOpenChange={setOpen} placement="center">
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Modal Title
+                Tahrirlash
               </ModalHeader>
               <ModalBody>
                 <Input value={newProductName} onChange={handleChange} />

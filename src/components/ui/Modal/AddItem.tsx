@@ -27,7 +27,7 @@ const notify = () => {
   });
 };
 
-export default function DeleteItem({
+export default function AddItem({
   open,
   setOpen,
   setData,
@@ -85,7 +85,7 @@ export default function DeleteItem({
   };
   return (
     <>
-      <Modal isOpen={open} onOpenChange={setOpen} placement="top-center">
+      <Modal isOpen={open} onOpenChange={setOpen} placement="center">
         <ModalContent>
           {(onClose) => (
             <>
