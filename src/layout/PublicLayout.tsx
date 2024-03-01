@@ -1,4 +1,4 @@
-import Views from "../../modules";
+import Views from "../modules";
 
 const PublicLayout = () => {
   return <Views />;

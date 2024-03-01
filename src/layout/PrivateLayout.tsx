@@ -1,5 +1,5 @@
-import { NavbarComponent } from "..";
-import Views from "../../modules";
+import { NavbarComponent } from "../components";
+import Views from "../modules";
 import MainLayout from "./MainLayout";
 
 const PrivateLayout = () => {

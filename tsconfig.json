@@ -6,6 +6,12 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
+    /* Emit */
+    "declaration": true,
+    "outDir": "dist",
+    "declarationMap": true,
+    "declarationDir": "types",
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

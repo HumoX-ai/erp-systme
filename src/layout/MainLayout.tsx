@@ -1,4 +1,4 @@
-import Sidebar from "../ui/Sidebar/Sidebar";
+import Sidebar from "../components/ui/Sidebar/Sidebar";
 
 const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
   return (
