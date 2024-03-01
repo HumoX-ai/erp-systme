@@ -83,9 +83,8 @@ const Product = () => {
             />
             <ModalComponent open={open} setOpen={setOpen} setData={setData} />
           </div>
-          <div style={{ overflowX: "auto" }}>
+          <div className="overflow-x-scroll w-96">
             <Table
-              className="overflow-x-auto"
               aria-label="table"
               bottomContent={
                 <div className="flex w-full justify-end">
