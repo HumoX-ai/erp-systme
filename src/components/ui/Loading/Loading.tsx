@@ -2,7 +2,7 @@
 import { Spinner } from "@nextui-org/react";
 import { CustomLoadingType } from "./types";
 
-export const CustomLoading = (props: CustomLoadingType) => {
+const CustomLoading = (props: CustomLoadingType) => {
   const {
     loading,
     children,
@@ -27,3 +27,4 @@ CustomLoading.defaultProps = {
   asElement: "div",
 };
 
+export default CustomLoading;
