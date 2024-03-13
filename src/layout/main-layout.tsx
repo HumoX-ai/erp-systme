@@ -1,6 +1,7 @@
+import { ReactNode } from "react";
 import { Sidebar } from "../components/ui/Sidebar/sidebar";
 
-const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
+const PrivateLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="flex h-screen">
       <div>
