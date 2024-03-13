@@ -12,10 +12,9 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-  Link,
   User,
 } from "@nextui-org/react";
-import { ThemeSwitcher } from "../ThemeSwitch/ThemeSwitcher";
+import { ThemeSwitcher } from "../ThemeSwitch/theme-switcher";
 import { useAuthStore } from "../../../store/auth";
 
 const NavbarComponent = () => {
@@ -25,11 +24,18 @@ const NavbarComponent = () => {
   const menuItems = [
     {
       label: "Bosh sahifa",
+      role: "all",
       to: "/dashboard",
     },
     {
       label: "Mahsulotlar",
+      role: "customer",
       to: "/products",
+    },
+    {
+      label: "Statistikalar",
+      role: "admin",
+      to: "/stats",
     },
     {
       label: "Profil",
@@ -43,6 +49,9 @@ const NavbarComponent = () => {
   ];
 
   const navigate = useNavigate();
+
+  const userRole =
+    JSON.parse(localStorage.getItem("auth") || "{}").state?.user?.role || null;
 
   return (
     <Navbar
@@ -116,24 +125,23 @@ const NavbarComponent = () => {
       </NavbarContent>
 
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              onClick={() => navigate(item.to)}
-              className="w-full"
-              color={
-                index === 2
-                  ? "warning"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
-              size="lg"
-            >
-              {item.label}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+        {menuItems.map((item, index) => {
+          {
+            if (userRole === item.role || item.role === "all") {
+              return (
+                <NavbarMenuItem
+                  key={index}
+                  onClick={() => {
+                    navigate(item.to);
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  {item.label}
+                </NavbarMenuItem>
+              );
+            }
+          }
+        })}
         <ThemeSwitcher />
       </NavbarMenu>
     </Navbar>
