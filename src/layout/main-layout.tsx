@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Sidebar } from "../components/ui/Sidebar/sidebar";
+import { Sidebar } from "../components/ui/Sidebar/sidebar.tsx";
 
 const PrivateLayout = ({ children }: { children: ReactNode }) => {
   return (
