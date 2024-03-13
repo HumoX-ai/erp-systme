@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import navigationLinks from "../../../configs/sidebar.config";
 
-const Sidebar = () => {
+export const Sidebar = () => {
   const userRole =
     JSON.parse(localStorage.getItem("auth") || "{}").state?.user?.role || null;
 
@@ -50,5 +50,3 @@ const Sidebar = () => {
     </div>
   );
 };
-
-export default Sidebar;

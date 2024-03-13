@@ -6,7 +6,7 @@ import PublicRoute from "../components/route/public-route";
 import { protectedRoutes } from "../configs/routes/public.routes";
 import publicRoutes from "../configs/routes/private.routes";
 import Page404 from "./404";
-import CustomLoading from "../components/ui/Loading/loading";
+import {CustomLoading} from "../components/ui/Loading/loading";
 
 const AllRoutes = () => {
   return (
