@@ -1,7 +1,7 @@
 import { memo, useMemo, lazy, Suspense } from "react";
 import Cookies from "js-cookie";
 import { useAuthStore } from "../store/auth";
-import CustomLoading from "../components/ui/Loading/loading";
+import { CustomLoading } from "../components";
 
 
 const PrivateLayout = lazy(() => import("./private-layout"));
