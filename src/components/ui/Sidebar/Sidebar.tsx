@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import navigationLinks from "../../../configs/sidebar.config";
+import navigationLinks from "../../../configs/sidebar-config";
 
 const Sidebar = () => {
   const userRole =
