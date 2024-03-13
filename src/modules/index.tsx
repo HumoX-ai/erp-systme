@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import ProtectedRoute from "../components/route/ProtectedRoute";
-import PublicRoute from "../components/route/PublicRoute";
+import ProtectedRoute from "../components/route/protected-route";
+import PublicRoute from "../components/route/public-route";
 import { protectedRoutes } from "../configs/routes/public.routes";
 import publicRoutes from "../configs/routes/private.routes";
 import Page404 from "./404";
