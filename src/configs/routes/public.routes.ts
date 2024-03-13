@@ -1,14 +1,19 @@
-import React from "react";
+import { lazy } from "react";
 
 export const protectedRoutes = [
   {
     key: "Bosh panel",
     path: "/dashboard",
-    component: React.lazy(() => import("../../modules/dashboard/index")),
+    component: lazy(() => import("../../modules/dashboard/index")),
   },
   {
     key: "Mahsulotlar",
     path: "/products",
-    component: React.lazy(() => import("../../modules/products/index")),
+    component: lazy(() => import("../../modules/products/index")),
+  },
+  {
+    key: "Statistika",
+    path: "stats",
+    component: lazy(() => import("../../modules/stats/index")),
   },
 ];

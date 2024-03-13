@@ -18,9 +18,9 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import ModalComponent from "../../components/ui/Modal/AddItem";
+import ModalComponent from "../../components/ui/Modal/add-item";
 import { IProduct } from "./types";
-import SetItems from "../../components/ui/Modal/SetItems";
+import SetItems from "../../components/ui/Modal/set-item";
 
 const Product = () => {
   const [data, setData] = useState<IProduct[]>([]);

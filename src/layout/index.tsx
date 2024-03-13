@@ -1,10 +1,10 @@
 import { memo, useMemo, lazy, Suspense } from "react";
 import Cookies from "js-cookie";
 import { useAuthStore } from "../store/auth";
-import CustomLoading from "../components/ui/Loading/Loading";
+import CustomLoading from "../components/ui/Loading/loading";
 
-const PrivateLayout = lazy(() => import("./PrivateLayout"));
-const PublicLayout = lazy(() => import("./PublicLayout"));
+const PrivateLayout = lazy(() => import("./private-layout"));
+const PublicLayout = lazy(() => import("./public-layout"));
 
 const Layout = memo(() => {
   useAuthStore();
