@@ -25,14 +25,14 @@ export default function SetItemFilial({
   setData: Dispatch<SetStateAction<IFilial[]>>;
   selectItem: IFilial;
 }) {
-  const [filialName, setFilialName] = useState(selectItem?.name);
+  const [filialName, setFilialName] = useState(selectItem?.filialName);
   const [address, setAddress] = useState(selectItem?.address);
   const [phone, setPhone] = useState(selectItem?.phone);
   const [newQuantity, setNewQuantity] = useState(selectItem?.quantity);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setFilialName(selectItem?.name || "");
+    setFilialName(selectItem?.filialName || "");
     setAddress(selectItem?.address || "");
     setPhone(selectItem?.phone || "");
     setNewQuantity(selectItem?.quantity || 0);
