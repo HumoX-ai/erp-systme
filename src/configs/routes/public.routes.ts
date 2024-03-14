@@ -13,7 +13,12 @@ export const protectedRoutes = [
   },
   {
     key: "Statistika",
-    path: "stats",
+    path: "/stats",
     component: lazy(() => import("../../modules/stats/index")),
+  },
+  {
+    key: "Filiallar",
+    path: "/filials",
+    component: lazy(() => import("../../modules/filial/index")),
   },
 ];

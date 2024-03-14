@@ -23,6 +23,13 @@ const navigationLinks = [
     key: "stats",
     role: "admin",
   },
+  {
+    title: "Filiallar",
+    // icon: statsIcon,
+    path: "/filials",
+    key: "filial",
+    role: "all",
+  },
 ];
 
 export default navigationLinks;

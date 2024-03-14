@@ -12,7 +12,7 @@ import { IProduct } from "../../../modules/products/types";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import axios from "axios";
 
-export default function SetItems({
+export default function SetItemProduct({
   open,
   setOpen,
   data,
@@ -57,15 +57,12 @@ export default function SetItems({
   const changeItem = async () => {
     try {
       setIsLoading(true);
-      await axios.put(
-        `https://65088b8356db83a34d9c7d66.mockapi.io/api/v1/login/${selectItem.id}`,
-        {
-          product: newProductName,
-          quantity: newQuantity,
-          price: newPrice,
-          sold_price: newSoldPrice,
-        }
-      );
+      await axios.put(`http://localhost:8080/products/${selectItem.id}`, {
+        product: newProductName,
+        quantity: newQuantity,
+        price: newPrice,
+        sold_price: newSoldPrice,
+      });
 
       const newData = data.map((item) => {
         if (item.id === selectItem.id) {

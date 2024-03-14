@@ -1,0 +1,48 @@
+{
+  "filial": [
+    {
+      "filialName": "Sanaq=rqand",
+      "address": "Toshkent, Chilonzor",
+      "phone": "+998 90 123 45 67",
+      "quantity": 10,
+      "id": "b7ba"
+    },
+    {
+      "filialName": "Filial 2",
+      "address": "Toshkent, Chilonzor",
+      "phone": "+998 90 123 45 67",
+      "quantity": 10,
+      "id": "615c"
+    },
+    {
+      "id": "8c50",
+      "filialName": "qwqw",
+      "address": "qwqw",
+      "phone": "qwqwq",
+      "quantity": "1111"
+    },
+    {
+      "id": "9f54",
+      "filialName": "asd",
+      "address": "asdas",
+      "phone": "asdas",
+      "quantity": "213"
+    }
+  ],
+  "products": [
+    {
+      "product": "Samsung",
+      "quantity": 19,
+      "price": 1000,
+      "sold_price": 504,
+      "id": "1"
+    },
+    {
+      "id": "6d7f",
+      "product": "Iphone 11",
+      "quantity": "260",
+      "price": "400",
+      "sold_price": "400"
+    }
+  ]
+}

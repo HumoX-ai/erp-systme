@@ -18,24 +18,24 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import { IProduct } from "./types";
-import SetItemProduct from "../../components/ui/Modal/set-item-product";
-import AddItemProduct from "../../components/ui/Modal/add-item-product";
+import { IFilial } from "./types";
+import SetItemFilial from "../../components/ui/Modal/set-item-filial";
+import AddItemFilial from "../../components/ui/Modal/add-item-filial";
 
-const Product = () => {
-  const [data, setData] = useState<IProduct[]>([]);
+const FilialPage = () => {
+  const [data, setData] = useState<IFilial[]>([]);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [open, setOpen] = useState(false);
   const [change, setChange] = useState(false);
-  const [selectItem, setSelectItem] = useState<IProduct>();
+  const [selectItem, setSelectItem] = useState<IFilial | undefined>();
 
   const limit = 15;
 
   useEffect(() => {
     const getItems = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/products");
+        const response = await axios.get("http://localhost:8080/filial");
 
         setPages(Math.ceil(response.data.length / limit));
         setData(response.data);
@@ -49,7 +49,7 @@ const Product = () => {
 
   const deleteItem = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:8080/products/${id}`);
+      await axios.delete(`http://localhost:8080/filial/${id}`);
 
       const newData = data.filter((item) => item.id !== id);
       setData(newData);
@@ -68,10 +68,10 @@ const Product = () => {
         <>
           <div className="flex justify-end pb-4">
             <Button color="primary" onClick={() => setOpen(true)}>
-              Maishiy texnika qo'shish
+              Filial qo'shish
             </Button>
-            <AddItemProduct open={open} setOpen={setOpen} setData={setData} />
-            <SetItemProduct
+            <AddItemFilial open={open} setOpen={setOpen} setData={setData} />
+            <SetItemFilial
               open={change}
               setOpen={setChange}
               data={data}
@@ -99,23 +99,23 @@ const Product = () => {
             >
               <TableHeader>
                 <TableColumn>#</TableColumn>
-                <TableColumn>Mahsulot nomi</TableColumn>
+                <TableColumn>Filial nomi</TableColumn>
+                <TableColumn>Manzil</TableColumn>
+                <TableColumn>Telefon raqam</TableColumn>
                 <TableColumn>Mahsulot soni</TableColumn>
-                <TableColumn>Tan narxi</TableColumn>
-                <TableColumn>Sotilish narxi</TableColumn>
                 <TableColumn>Amallar</TableColumn>
               </TableHeader>
               <TableBody
                 emptyContent={"Mahsulotlar mavjud emas"}
                 isLoading={!newData?.length ? true : false}
               >
-                {newData.map((item: IProduct, index) => (
+                {newData.map((item, index) => (
                   <TableRow key={item.id}>
                     <TableCell>{index + 1}</TableCell>
-                    <TableCell>{item.product}</TableCell>
+                    <TableCell>{item.filialName}</TableCell>
+                    <TableCell>{item.address}</TableCell>
+                    <TableCell>{item.phone}</TableCell>
                     <TableCell>{item.quantity}</TableCell>
-                    <TableCell>{item.price}$</TableCell>
-                    <TableCell>{item.sold_price}$</TableCell>
                     <TableCell>
                       <Dropdown>
                         <DropdownTrigger>
@@ -159,4 +159,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default FilialPage;

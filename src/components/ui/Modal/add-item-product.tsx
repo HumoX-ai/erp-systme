@@ -27,7 +27,7 @@ const notify = () => {
   });
 };
 
-export default function AddItem({
+export default function AddItemProduct({
   open,
   setOpen,
   setData,
@@ -45,7 +45,7 @@ export default function AddItem({
   const fetchData = async () => {
     try {
       const response = await axios.post(
-        "https://65088b8356db83a34d9c7d66.mockapi.io/api/v1/login",
+        "http://localhost:8080/products",
         {
           product,
           quantity,

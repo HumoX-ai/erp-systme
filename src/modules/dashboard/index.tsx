@@ -1,17 +1,18 @@
-import { ScrollShadow } from "@nextui-org/react";
+import { ScrollShadow, Spinner } from "@nextui-org/react";
 
 import { useEffect } from "react";
+import { useAuthStore } from "../../store/auth";
 
 const Dashboard = () => {
   useEffect(() => {
     document.title = "Asosiy sahifa";
   }, []);
 
+  const { user: userInfo } = useAuthStore();
 
   return (
     <ScrollShadow className="p-6 w-auto h-[90vh]" visibility="bottom">
-      salom
-      {/* {!userInfo ? (
+      {!userInfo ? (
         <Spinner className="h-[90vh] flex items-center justify-center" />
       ) : (
         <>
@@ -23,7 +24,7 @@ const Dashboard = () => {
             </div>
           )}
         </>
-      )} */}
+      )}
     </ScrollShadow>
   );
 };
