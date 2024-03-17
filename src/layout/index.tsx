@@ -3,8 +3,7 @@ import Cookies from "js-cookie";
 import { useAuthStore } from "../store/auth";
 import { CustomLoading } from "../components";
 
-
-const PrivateLayout = lazy(() => import("./private-layout"));
+const PrivateLayout = lazy(() => import("./main-layout"));
 const PublicLayout = lazy(() => import("./public-layout"));
 
 const Layout = memo(() => {
@@ -19,7 +18,14 @@ const Layout = memo(() => {
   );
 
   return (
-    <Suspense fallback={<CustomLoading loading={true} />}>
+    <Suspense
+      fallback={
+        <CustomLoading
+          loading={true}
+          className="absolute z-50 left-0 top-0 right-0 bottom-0"
+        />
+      }
+    >
       <AppLayout />
     </Suspense>
   );

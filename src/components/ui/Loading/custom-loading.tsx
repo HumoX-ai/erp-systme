@@ -15,7 +15,7 @@ const CustomLoading = (props: CustomLoadingType) => {
     <Component
       className={`flex items-center justify-center h-full ${className}`}
     >
-      <Spinner className={spinnerClass} color="white" />
+      <Spinner className={spinnerClass} />
     </Component>
   ) : (
     <>{children}</>
