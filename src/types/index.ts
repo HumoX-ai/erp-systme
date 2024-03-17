@@ -25,3 +25,18 @@ export type AuthPersistType = (
   config: StateCreator<AuthStoreType>,
   options: PersistOptions<AuthStoreType>
 ) => StateCreator<AuthStoreType>;
+
+export type DrawerTypes<T> = {
+  initialValues: T;
+  isOpen: boolean;
+};
+
+export type BaseStoretypes = {
+  isLoading: boolean;
+  refresh: boolean;
+  drawer: boolean;
+
+  setDrawer: (value: boolean) => void;
+  setIsLoading: (value: boolean) => void;
+  setRefresh: (value: boolean) => void;
+};

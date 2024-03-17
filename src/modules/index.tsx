@@ -18,9 +18,31 @@ const AllRoutes = () => {
       </Route>
       <Route path="/" element={<ProtectedRoute />}>
         <Route path="/" element={<Navigate replace to={"/dashboard"} />} />
-        {protectedRoutes.map(({ component: Component, key, path }, index) => (
-          <Route key={key + index} path={path} element={<Component />} />
-        ))}
+        {protectedRoutes.map(
+          ({ component: Component, key, path, children }, index) => {
+            if (children?.length) {
+              return (
+                <Route key={key + index} path={path} element={<Component />}>
+                  {children.map(
+                    ({ childrenPath, component: Component }, index) => {
+                      return (
+                        <Route
+                          path={`${path}${childrenPath}`}
+                          element={<Component />}
+                          key={index}
+                        />
+                      );
+                    }
+                  )}
+                </Route>
+              );
+            } else {
+              return (
+                <Route key={key + index} path={path} element={<Component />} />
+              );
+            }
+          }
+        )}
         <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>

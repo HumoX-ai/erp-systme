@@ -38,12 +38,12 @@ export const data = {
   datasets: [
     {
       label: "Kirim",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+      data: labels.map(() => faker.number.int({ min: 0, max: 1000 })),
       backgroundColor: "rgb(75, 192, 192)",
     },
     {
       label: "Chiqim",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+      data: labels.map(() => faker.number.int({ min: 0, max: 1000 })),
       backgroundColor: "rgb(255, 99, 132)",
     },
   ],

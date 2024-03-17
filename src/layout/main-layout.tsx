@@ -1,15 +1,17 @@
-import { ReactNode } from "react";
 import { Sidebar } from "../components";
+import Views from "../modules";
 
-const PrivateLayout = ({ children }: { children: ReactNode }) => {
+const MainLayout = () => {
   return (
-    <div className="flex h-screen">
+    <div className="flex">
       <div>
         <Sidebar />
       </div>
-      <div className="flex-1">{children}</div>
+      <div className="w-full bg-[#F5F7FA] dark:bg-[#12151b]">
+        <Views />
+      </div>
     </div>
   );
 };
 
-export default PrivateLayout;
+export default MainLayout;
