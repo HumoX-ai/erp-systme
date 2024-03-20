@@ -11,15 +11,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@nextui-org/react": "^2.2.9",
+    "@types/faker": "^6.6.9",
     "axios": "^1.6.7",
+    "chart.js": "^4.4.2",
+    "faker": "^6.6.6",
     "framer-motion": "^11.0.6",
     "js-cookie": "^3.0.5",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.22.1",
+    "react-toastify": "^10.0.4",
     "zustand": "^4.5.1"
   },
   "devDependencies": {

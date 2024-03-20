@@ -1,11 +1,11 @@
 import { memo, useMemo, lazy, Suspense } from "react";
 import Cookies from "js-cookie";
-import { useAuthStore } from "../../store/auth";
+import { useAuthStore } from "../store/auth";
+import { CustomLoading } from "../components";
 
-const PrivateLayout = lazy(
-  () => import("../../components/layout/PrivateLayout")
-);
-const PublicLayout = lazy(() => import("../../components/layout/PublicLayout"));
+
+const PrivateLayout = lazy(() => import("./private-layout"));
+const PublicLayout = lazy(() => import("./public-layout"));
 
 const Layout = memo(() => {
   useAuthStore();
@@ -19,7 +19,7 @@ const Layout = memo(() => {
   );
 
   return (
-    <Suspense fallback={"...loading"}>
+    <Suspense fallback={<CustomLoading loading={true} />}>
       <AppLayout />
     </Suspense>
   );
