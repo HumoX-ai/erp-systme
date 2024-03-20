@@ -12,7 +12,6 @@ const CustomInput: React.FC<any> = ({
   return (
     <div>
       <Input
-        required
         {...field}
         {...props}
         // className="mt-1 bg-[#F5F7FA] p-4 border border-[#E2E2E2] rounded-xl shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm"

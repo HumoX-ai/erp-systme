@@ -3,36 +3,34 @@ import { FormikProps } from "formik";
 
 import { CustomModalFooter } from "../../../components";
 import CustomModal from "../../../components/common/Modal/Modal";
-import ProductBrendsForm from "../components/ProductBrends/ProductBrendsForm";
-import { ProductBrendsFormTypes } from "../types";
+import { BrandProductDataTypes } from "../types";
 import useReceiveProduct from "../store";
+import BrendProductForm from "../components/BrendProducts/BrendProductForm";
 
-const ProductBrendsModal = () => {
+const BrendProductModal = () => {
   const { setDrawer, drawer } = useReceiveProduct();
-  const formRef = useRef<FormikProps<ProductBrendsFormTypes>>(null);
+  const formRef = useRef<FormikProps<BrandProductDataTypes>>(null);
 
   const id = drawer?.initialValues?.id;
 
   return (
     <CustomModal
-      modalBodyChildren={<ProductBrendsForm ref={formRef} />}
+      modalBodyChildren={<BrendProductForm ref={formRef} />}
       modalFooterChildren={
         <CustomModalFooter
-          onSubmit={
-            () => {
-              formRef.current?.handleSubmit();
-            }
-          }
+          onSubmit={() => {
+            formRef.current?.handleSubmit();
+          }}
           openText={id ? "Tahrirlash" : "Qo'shish"}
           closeText="Bekor qilish"
           onClose={() => setDrawer({ isOpen: false })}
         />
       }
-      modalHeaderTitle={id ? "Brend tahrirlash" : "Brend qo'shish"}
+      modalHeaderTitle={id ? "Mahsulot tahrirlash" : "Mahsulot qo'shish"}
       isOpen={drawer?.isOpen}
       setIsOpen={() => setDrawer({ isOpen: false })}
     />
   );
 };
 
-export default ProductBrendsModal;
+export default BrendProductModal;

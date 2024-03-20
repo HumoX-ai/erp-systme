@@ -16,7 +16,12 @@ const CustomModal = ({
   setIsOpen,
 }: CustomModalTypes) => {
   return (
-    <Modal isOpen={isOpen} onOpenChange={setIsOpen} placement={position}>
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={setIsOpen}
+      placement={position}
+      scrollBehavior="outside"
+    >
       <ModalContent>
         <ModalHeader className="flex flex-col gap-1">
           {modalHeaderTitle}

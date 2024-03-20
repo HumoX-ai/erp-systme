@@ -11,12 +11,27 @@ export type BrandDataTypes = {
   children?: [];
 };
 
+export type BrandProductDataTypes = {
+  id?: string | number;
+  image: string | File;
+  product_name: string;
+  price: number | string;
+  sell_price: string | number;
+  count: string | number;
+};
+
 export type ReceiveProductStoreTypes = {
   brandData: BrandDataTypes[];
+  uploadImage: string;
+  brandProductData: BrandProductDataTypes[];
   isLoading: boolean;
-  drawer: DrawerTypes<ProductBrendsFormTypes>;
+  drawer: DrawerTypes;
 
-  setDrawer: (value: DrawerTypes<ProductBrendsFormTypes>) => void;
+  setDrawer: (
+    value: DrawerTypes
+  ) => void;
   setIsLoading: (value: boolean) => void;
   setBrandData: (value: BrandDataTypes[]) => void;
+  setUploadImage: (value: string) => void;
+  setBrandProductData: (value: BrandProductDataTypes[]) => void;
 };

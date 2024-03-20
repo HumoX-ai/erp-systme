@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { CustomTable } from "../../../../components";
 import TableDropDown from "../../../../components/shared/TableDropDown/table-drop-down";
 import useBaseStore from "../../../../store/base";
@@ -8,9 +10,15 @@ import { BrandDataTypes } from "../../types";
 const ProductBrendsTable = () => {
   const { brandData, setDrawer } = useReceiveProduct();
   const { setRefresh } = useBaseStore();
+  const navigate = useNavigate();
 
   const columns = [
-    { dataIndex: "number", label: "#" },
+    {
+      dataIndex: "number",
+      label: "#",
+      render: (_item: BrandDataTypes, _rows: BrandDataTypes[], index: number) =>
+        index,
+    },
     {
       dataIndex: "brand_name",
       label: "Brend Nomlari",
@@ -21,7 +29,7 @@ const ProductBrendsTable = () => {
       render: (values: BrandDataTypes) => values?.children?.length || 0,
     },
     {
-      // dataIndex: "action",
+      dataIndex: "action",
       label: "Holat",
       render: (values: BrandDataTypes) => {
         return (
@@ -45,7 +53,16 @@ const ProductBrendsTable = () => {
     },
   ];
 
-  return <CustomTable columns={columns} rows={brandData} />;
+  return (
+    <CustomTable
+      columns={columns}
+      rows={brandData}
+      selectionMode="none"
+      onRowClick={(items) =>
+        navigate(`/receive-product/products?brand_id=${items?.id}`)
+      }
+    />
+  );
 };
 
 export default ProductBrendsTable;
