@@ -7,7 +7,7 @@ const Sidebar = () => {
     JSON.parse(localStorage.getItem("auth") || "{}").state?.user?.role || null;
 
   return (
-    <div className="h-screen w-64 hidden sm:block border-r-1 border-[#DCDBDB] dark:border-[#2A2A2A]">
+    <div  className="h-screen w-64 hidden sm:block border-r-1 border-[#DCDBDB] dark:border-[#2A2A2A]">
       <div>
         <div className="border-b-1 w-full">
           <h2 className="text-xl font-semibold p-4">LOGO</h2>
