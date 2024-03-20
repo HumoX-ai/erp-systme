@@ -133,7 +133,7 @@ export default function AddItem({ open, setOpen, setData }: IFilialFormProps) {
   );
 
   return (
-    <>
+    <div>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -161,6 +161,6 @@ export default function AddItem({ open, setOpen, setData }: IFilialFormProps) {
         pauseOnHover
         theme="colored"
       />
-    </>
+    </div>
   );
 }
