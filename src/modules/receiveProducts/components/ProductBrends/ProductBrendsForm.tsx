@@ -2,12 +2,12 @@ import { ForwardedRef, forwardRef } from "react";
 import { Field, Form, Formik, FormikProps } from "formik";
 
 import CustomInput from "../../../../components/common/FormikField/formik-field";
-import { validationSchema } from "../../scheme";
 import { ProductBrendsFormTypes } from "../../types";
 import useBaseStore from "../../../../store/base";
 import { postRequest } from "../../../../services/postRequest";
 import useReceiveProduct from "../../store";
 import { putRequest } from "../../../../services/putRequest";
+import { brandValidationSchema } from "../../scheme";
 
 export type Ref = ForwardedRef<FormikProps<ProductBrendsFormTypes>>;
 
@@ -36,16 +36,15 @@ const ProductBrendsForm = forwardRef((_props, ref: Ref) => {
 
     setDrawer({
       isOpen: false,
-      initialValues: { brand_name: "" },
     });
   };
 
   return (
     <Formik
       innerRef={ref}
-      initialValues={drawer?.initialValues}
+      initialValues={drawer?.initialValues || { brand_name: "" }}
       onSubmit={handleSubmit}
-      validationSchema={validationSchema}
+      validationSchema={brandValidationSchema}
     >
       <Form>
         <div className="space-y-2">

@@ -22,9 +22,7 @@ const ProductBrends = () => {
       <div className="flex items-center justify-between py-5">
         <div className="text-xl font-semibold">Mavjud Brend nomlari</div>
         <Button
-          onPress={() =>
-            setDrawer({ isOpen: true, initialValues: { brand_name: "" } })
-          }
+          onPress={() => setDrawer({ isOpen: true })}
           color="primary"
           className="bg-[#1814F3]"
         >

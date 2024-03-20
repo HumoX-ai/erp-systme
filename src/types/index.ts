@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { TableProps } from "@nextui-org/react";
+import { PropsWithChildren } from "react";
 import { StateCreator } from "zustand";
 import { PersistOptions } from "zustand/middleware";
 
@@ -26,8 +29,8 @@ export type AuthPersistType = (
   options: PersistOptions<AuthStoreType>
 ) => StateCreator<AuthStoreType>;
 
-export type DrawerTypes<T> = {
-  initialValues: T;
+export type DrawerTypes = {
+  initialValues?: any;
   isOpen: boolean;
 };
 
@@ -40,3 +43,16 @@ export type BaseStoretypes = {
   setIsLoading: (value: boolean) => void;
   setRefresh: (value: boolean) => void;
 };
+
+export interface CustomTableTypes extends PropsWithChildren<TableProps> {
+  columns: {
+    dataIndex: string;
+    label: string;
+    render?: (items: any, rows: any, index: number) => void;
+  }[];
+  rows: any[];
+  loading?: boolean;
+  isPagination?: boolean;
+
+  onRowClick?: (items: any, rows: any) => void;
+}
