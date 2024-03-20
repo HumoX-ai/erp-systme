@@ -1,0 +1,34 @@
+import { memo, useMemo, lazy, Suspense } from "react";
+import Cookies from "js-cookie";
+import { useAuthStore } from "../store/auth";
+import { CustomLoading } from "../components";
+
+const PrivateLayout = lazy(() => import("./main-layout"));
+const PublicLayout = lazy(() => import("./public-layout"));
+
+const Layout = memo(() => {
+  useAuthStore();
+  const accessToken = Cookies.get("accessToken");
+  const { session } = useAuthStore();
+
+  const AppLayout = useMemo(
+    () => (accessToken && session.signedIn ? PrivateLayout : PublicLayout),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [accessToken, session.signedIn]
+  );
+
+  return (
+    <Suspense
+      fallback={
+        <CustomLoading
+          loading={true}
+          className="absolute z-50 left-0 top-0 right-0 bottom-0"
+        />
+      }
+    >
+      <AppLayout />
+    </Suspense>
+  );
+});
+
+export default Layout;

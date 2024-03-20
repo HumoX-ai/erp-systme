@@ -1,0 +1,58 @@
+{
+  "filial": [
+    {
+      "filialName": "Toshkent MCHJ jamiyati 1",
+      "address": "Samarqand viloyati, Yangihayot tumani, 52-uy",
+      "phone": "+998 93 598 05 39",
+      "quantity": 3000,
+      "id": "8256"
+    },
+    {
+      "id": "5ffd",
+      "filialName": "4",
+      "address": "4",
+      "phone": "4",
+      "quantity": 4
+    },
+    {
+      "id": "c045",
+      "filialName": "Markaz",
+      "address": "3",
+      "phone": "4",
+      "quantity": 5
+    },
+    {
+      "id": "0009",
+      "filialName": "333",
+      "address": "3",
+      "phone": "3",
+      "quantity": 3
+    },
+    {
+      "id": "d597",
+      "filialName": "asd",
+      "address": "asdas",
+      "phone": "asd",
+      "quantity": 2
+    }
+  ],
+  "products": [
+    {
+      "product": "Samsung",
+      "filialName": "Toshkent MCHJ jamiyati",
+      "quantity": 19,
+      "price": 1000,
+      "sold_price": 504,
+      "id": "1"
+    },
+    {
+      "id": "6d7f",
+      "filialName": "Toshkent MCHJ jamiyati",
+      "product": "Iphone 11",
+      "quantity": "260",
+      "price": "400",
+      "sold_price": "400"
+    }
+  ],
+  "": []
+}
