@@ -6,27 +6,27 @@ import { getRequest } from "../../../services/getRequest";
 import useReceiveProduct from "../store";
 import useBaseStore from "../../../store/base";
 import BrendProductModal from "../container/BrendProductModal";
+import { BackArrow } from "../../../components/shared/BackArrow/back-arrow";
 
 const BrendProducts = () => {
   const { setBrandProductData, setDrawer } = useReceiveProduct();
-  const { setRefresh, refresh } = useBaseStore();
+  const { refresh } = useBaseStore();
 
   useEffect(() => {
     getRequest({
-      url: "http://localhost:3000/brand-products",
+      path: "brand-products",
       setData: setBrandProductData,
     });
-  }, [refresh, setBrandProductData, setRefresh]);
+  }, [refresh, setBrandProductData]);
 
   return (
     <div>
       <div className="flex items-center justify-between py-5">
-        <div className="text-xl font-semibold">Mavjud Brend nomlari</div>
-        <Button
-          onPress={() => setDrawer({ isOpen: true })}
-          color="primary"
-          className="bg-[#1814F3]"
-        >
+        <div className="flex items-center gap-5">
+          <BackArrow route={-1} />
+          <div className="text-xl font-semibold">Mavjud Brend nomlari</div>
+        </div>
+        <Button onPress={() => setDrawer({ isOpen: true })} color="primary">
           Mahsulot qo'shish
         </Button>
       </div>

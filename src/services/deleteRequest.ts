@@ -1,17 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
+import appConfig from "../configs/app.config";
 
 export const deleteRequest = async ({
-  url,
+  path,
   setRefresh,
 }: {
-  url: string;
+  path: string;
   setRefresh: (refresh: boolean) => void;
 }) => {
   setRefresh(true);
 
   try {
-    await axios.delete(url);
+    await axios.delete(`${appConfig.apiPrefix}/${path}`);
   } catch (error) {
     console.log(error);
   } finally {

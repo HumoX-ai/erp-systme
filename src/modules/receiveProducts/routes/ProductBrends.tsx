@@ -8,14 +8,14 @@ import { getRequest } from "../../../services/getRequest";
 
 const ProductBrends = () => {
   const { setBrandData, setDrawer } = useReceiveProduct();
-  const { setRefresh, refresh } = useBaseStore();
+  const { refresh } = useBaseStore();
 
   useEffect(() => {
     getRequest({
-      url: "http://localhost:3000/brands",
+      path: "brands",
       setData: setBrandData,
     });
-  }, [refresh, setBrandData, setRefresh]);
+  }, [refresh, setBrandData]);
 
   return (
     <div>
@@ -24,7 +24,6 @@ const ProductBrends = () => {
         <Button
           onPress={() => setDrawer({ isOpen: true })}
           color="primary"
-          className="bg-[#1814F3]"
         >
           Brend yaratish
         </Button>

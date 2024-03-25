@@ -5,6 +5,7 @@ import { deleteRequest } from "../../../../services/deleteRequest";
 import useReceiveProduct from "../../store";
 import { BrandProductDataTypes } from "../../types";
 import { Image } from "@nextui-org/react";
+import { brandProductFK } from "../../constants";
 
 const BrendProductTable = () => {
   const { brandProductData, setDrawer } = useReceiveProduct();
@@ -21,7 +22,7 @@ const BrendProductTable = () => {
       ) => index,
     },
     {
-      dataIndex: "image",
+      dataIndex: brandProductFK.key1,
       label: "Mahsulot rasmi",
       render: (item: BrandProductDataTypes) =>
         item?.image ? (
@@ -35,24 +36,24 @@ const BrendProductTable = () => {
         ),
     },
     {
-      dataIndex: "product_name",
+      dataIndex: brandProductFK.key2,
       label: "Mahsulot nomi",
     },
     {
-      dataIndex: "price",
+      dataIndex: brandProductFK.key3,
       label: "Tan narxi",
     },
     {
-      dataIndex: "sell_price",
+      dataIndex: brandProductFK.key4,
       label: "Sotuv narxi",
     },
     {
-      dataIndex: "brand_name",
-      label: "Mahsulot brandi",
+      dataIndex: brandProductFK.key5,
+      label: "Mahsulot soni",
     },
     {
-      dataIndex: "count",
-      label: "Mahsulot soni",
+      dataIndex: brandProductFK.key6,
+      label: "Mahsulot brandi",
     },
     {
       dataIndex: "action",
@@ -63,7 +64,7 @@ const BrendProductTable = () => {
             onDelete={() =>
               values?.id &&
               deleteRequest({
-                url: `http://localhost:3000/brand-products/${values?.id}`,
+                path: `brand-products/${values?.id}`,
                 setRefresh: setRefresh,
               })
             }

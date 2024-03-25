@@ -1,19 +1,18 @@
-import { ForwardedRef, forwardRef } from "react";
-import { ErrorMessage, Field, Form, Formik, FormikProps } from "formik";
+import { forwardRef } from "react";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 
 import CustomInput from "../../../../components/common/FormikField/formik-field";
 import { brandProductValidationSchema } from "../../scheme";
-import { BrandProductDataTypes } from "../../types";
+import { BrandProductDataTypes, PropsRefTypes } from "../../types";
 import useBaseStore from "../../../../store/base";
 import { postRequest } from "../../../../services/postRequest";
 import useReceiveProduct from "../../store";
 import { putRequest } from "../../../../services/putRequest";
 import { FileUpload } from "../../../../components/shared/FileUpload/FileUpload";
 import { uploadFileForm } from "../../../../utils/uploadFile";
+import { brandProductFK, brandProductIV } from "../../constants";
 
-export type Ref = ForwardedRef<FormikProps<BrandProductDataTypes>>;
-
-const BrendProductForm = forwardRef((_props, innerRef: Ref) => {
+const BrendProductForm = forwardRef((_props, innerRef: PropsRefTypes) => {
   const { setIsLoading, setRefresh } = useBaseStore();
   const { drawer, setDrawer } = useReceiveProduct();
 
@@ -30,14 +29,14 @@ const BrendProductForm = forwardRef((_props, innerRef: Ref) => {
           putRequest({
             setButtonLoading: setIsLoading,
             setRefresh: setRefresh,
-            url: `http://localhost:3000/brand-products/${id}`,
+            path: `brand-products/${id}`,
             values: values,
           });
         } else {
           postRequest({
             setButtonLoading: setIsLoading,
             setRefresh: setRefresh,
-            url: "http://localhost:3000/brand-products",
+            path: "brand-products",
             values: values,
           }).then(() => {});
         }
@@ -50,7 +49,7 @@ const BrendProductForm = forwardRef((_props, innerRef: Ref) => {
       putRequest({
         setButtonLoading: setIsLoading,
         setRefresh: setRefresh,
-        url: `http://localhost:3000/brand-products/${id}`,
+        path: `brand-products/${id}`,
         values: values,
       });
 
@@ -63,15 +62,8 @@ const BrendProductForm = forwardRef((_props, innerRef: Ref) => {
   return (
     <Formik
       innerRef={innerRef}
-      initialValues={
-        drawer?.initialValues || {
-          image: null,
-          product_name: "",
-          price: "",
-          sell_price: "",
-          count: "",
-        }
-      }
+      enableReinitialize
+      initialValues={drawer?.initialValues || brandProductIV}
       onSubmit={handleSubmit}
       validationSchema={brandProductValidationSchema}
     >
@@ -79,7 +71,7 @@ const BrendProductForm = forwardRef((_props, innerRef: Ref) => {
         return (
           <Form>
             <div className="space-y-2">
-              <Field name="image">
+              <Field name={brandProductFK.key1}>
                 {() => (
                   <>
                     <FileUpload
@@ -94,13 +86,14 @@ const BrendProductForm = forwardRef((_props, innerRef: Ref) => {
                 )}
               </Field>
               <Field
-                name="product_name"
+                name={brandProductFK.key2}
                 type="text"
                 placeholder="Mahsulot nomi"
+                variant="faded"
                 component={CustomInput}
               />
               <Field
-                name="price"
+                name={brandProductFK.key3}
                 type="number"
                 placeholder="Tan narxi"
                 startContent={
@@ -108,10 +101,11 @@ const BrendProductForm = forwardRef((_props, innerRef: Ref) => {
                     <span className="text-default-400 text-small">$</span>
                   </div>
                 }
+                variant="faded"
                 component={CustomInput}
               />
               <Field
-                name="sell_price"
+                name={brandProductFK.key4}
                 type="number"
                 placeholder="Sotuv narxi"
                 startContent={
@@ -119,12 +113,14 @@ const BrendProductForm = forwardRef((_props, innerRef: Ref) => {
                     <span className="text-default-400 text-small">$</span>
                   </div>
                 }
+                variant="faded"
                 component={CustomInput}
               />
               <Field
-                name="count"
+                name={brandProductFK.key5}
                 type="number"
                 placeholder="Mahsulot soni"
+                variant="faded"
                 component={CustomInput}
               />
             </div>

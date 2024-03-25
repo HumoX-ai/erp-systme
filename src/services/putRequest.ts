@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
+import appConfig from "../configs/app.config";
 
 export const putRequest = async ({
-  url,
+  path,
   setRefresh,
   values,
   params,
   setButtonLoading,
 }: {
-  url: string;
+  path: string;
   values: any;
   params?: { [k: string]: string };
   setRefresh: (refresh: boolean) => void;
@@ -18,7 +19,7 @@ export const putRequest = async ({
   setButtonLoading ? setButtonLoading(true) : null;
 
   try {
-    await axios.put(url, values, { params: params });
+    await axios.put(`${appConfig.apiPrefix}/${path}`, values, { params: params });
   } catch (error) {
     console.log(error);
   } finally {

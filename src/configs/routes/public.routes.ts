@@ -40,4 +40,25 @@ export const protectedRoutes = [
       },
     ],
   },
+  {
+    key: "warehouse",
+    path: "/warehouse",
+    component: lazy(() => import("../../modules/warehouse/index")),
+    children: [
+      {
+        key: "main",
+        childrenPath: "/",
+        component: lazy(
+          () => import("../../modules/warehouse/routes/WareHouse")
+        ),
+      },
+      {
+        key: "form",
+        childrenPath: "/form",
+        component: lazy(
+          () => import("../../modules/warehouse/routes/WareHouseForm")
+        ),
+      },
+    ],
+  },
 ];

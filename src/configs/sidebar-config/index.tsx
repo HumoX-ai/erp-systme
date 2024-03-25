@@ -1,7 +1,7 @@
 const navigationLinks: {
   key: string;
   path: string;
-  icon?: "home" | "product" | "statistics" | "receive-product";
+  icon?: "home" | "product" | "statistics" | "receive-product" | "warehouse";
   title: string;
   role: string;
 }[] = [
@@ -31,6 +31,13 @@ const navigationLinks: {
     icon: "receive-product",
     path: "/receive-product",
     key: "receive-product",
+    role: "admin",
+  },
+  {
+    title: "Omborxona",
+    icon: "warehouse",
+    path: "/warehouse",
+    key: "warehouse",
     role: "admin",
   },
 ];

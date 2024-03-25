@@ -40,7 +40,7 @@ const CustomTable: FC<CustomTableTypes> = ({
       aria-label="Custom table"
       {...rest}
       bottomContent={
-        isPagination ? (
+        isPagination && rows?.length > 0 ? (
           <div className="flex w-full justify-end">
             <Pagination
               initialPage={1}

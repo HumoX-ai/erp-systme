@@ -8,6 +8,7 @@ import { postRequest } from "../../../../services/postRequest";
 import useReceiveProduct from "../../store";
 import { putRequest } from "../../../../services/putRequest";
 import { brandValidationSchema } from "../../scheme";
+import { brandFK, brandIV } from "../../constants";
 
 export type Ref = ForwardedRef<FormikProps<ProductBrendsFormTypes>>;
 
@@ -22,14 +23,14 @@ const ProductBrendsForm = forwardRef((_props, ref: Ref) => {
       putRequest({
         setButtonLoading: setIsLoading,
         setRefresh: setRefresh,
-        url: `http://localhost:3000/brands/${id}`,
+        path: `brands/${id}`,
         values: values,
       });
     } else {
       postRequest({
         setButtonLoading: setIsLoading,
         setRefresh: setRefresh,
-        url: "http://localhost:3000/brands",
+        path: "brands",
         values: values,
       });
     }
@@ -42,16 +43,18 @@ const ProductBrendsForm = forwardRef((_props, ref: Ref) => {
   return (
     <Formik
       innerRef={ref}
-      initialValues={drawer?.initialValues || { brand_name: "" }}
+      enableReinitialize
+      initialValues={drawer?.initialValues || brandIV}
       onSubmit={handleSubmit}
       validationSchema={brandValidationSchema}
     >
       <Form>
         <div className="space-y-2">
           <Field
-            name="brand_name"
+            name={brandFK.key1}
             type="text"
             placeholder="Brend nomi"
+            variant="faded"
             component={CustomInput}
           />
         </div>

@@ -39,7 +39,7 @@ const PageLayout = ({
         </NavbarContent>
       </Navbar>
 
-      <div className="px-7">{children}</div>
+      <div className="py-3.5 px-6">{children}</div>
     </div>
   );
 };

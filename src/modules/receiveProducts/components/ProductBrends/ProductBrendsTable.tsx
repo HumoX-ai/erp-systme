@@ -6,6 +6,7 @@ import useBaseStore from "../../../../store/base";
 import { deleteRequest } from "../../../../services/deleteRequest";
 import useReceiveProduct from "../../store";
 import { BrandDataTypes } from "../../types";
+import { brandFK } from "../../constants";
 
 const ProductBrendsTable = () => {
   const { brandData, setDrawer } = useReceiveProduct();
@@ -20,11 +21,11 @@ const ProductBrendsTable = () => {
         index,
     },
     {
-      dataIndex: "brand_name",
+      dataIndex: brandFK.key1,
       label: "Brend Nomlari",
     },
     {
-      dataIndex: "children",
+      dataIndex: brandFK.key2,
       label: "Mahsulot soni",
       render: (values: BrandDataTypes) => values?.children?.length || 0,
     },
@@ -37,7 +38,7 @@ const ProductBrendsTable = () => {
             onDelete={() =>
               values?.id &&
               deleteRequest({
-                url: `http://localhost:3000/brands/${values?.id}`,
+                path: `brands/${values?.id}`,
                 setRefresh: setRefresh,
               })
             }

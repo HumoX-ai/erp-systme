@@ -8,6 +8,12 @@ export type SvgIconContainerProps = {
     | "product"
     | "statistics"
     | "receive-product"
-    | "upload-img";
+    | "upload-img"
+    | "search"
+    | "warehouse"
+    | "arrow-horizontal"
+    | "arrow-vertikal"
+    | "check"
+    | "backArrow";
   className?: string;
 };

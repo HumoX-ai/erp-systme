@@ -10,7 +10,7 @@ const Sidebar = () => {
     <div className="h-screen w-64 hidden sm:block border-r-1 border-[#DCDBDB] dark:border-[#2A2A2A]">
       <div>
         <div className="border-b-1 w-full">
-          <h2 className="text-xl font-semibold p-4">LOGO</h2>
+          <h2 className="text-xl font-semibold p-[18px]">LOGO</h2>
         </div>
 
         <div className="mt-7 p-4">
@@ -28,7 +28,7 @@ const Sidebar = () => {
                         className={({ isActive }) =>
                           `text-medium font-medium my-4 w-full block relative items-center justify-center cursor-pointer text-center transition-all duration-300 ${
                             isActive
-                              ? "text-[#2D60FF] stroke-[#2D60FF] fill-[#2D60FF] translate-x-2 before:scale-x-100 before:border-l-4 before:border-[#2D60FF] before:absolute before:h-full before:-left-4 before:top-0 before:rounded-r-lg"
+                              ? "text-[#0070F0] stroke-[#0070F0] fill-[#0070F0] translate-x-2 before:scale-x-100 before:border-l-4 before:border-[#0070F0] before:absolute before:h-full before:-left-4 before:top-0 before:rounded-r-lg"
                               : "before:scale-x-0 text-[#B1B1B1] stroke-[#B1B1B1] fill-[#B1B1B1] before:border-l-4 before:border-transparent before:absolute before:h-full before:-left-4 before:top-0 before:rounded-r-lg"
                           }`
                         }

@@ -21,6 +21,8 @@ export const PreviewImage = ({ file }: { file: string | File }) => {
       className="object-contain w-full h-full"
       src={preview as string}
       alt="upload-img"
+      width={190}
+      height={190}
     />
   );
 };

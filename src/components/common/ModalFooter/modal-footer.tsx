@@ -13,28 +13,34 @@ const CustomModalFooter: FC<CustomModalFooterTypes> = ({
   openText,
   type = "submit",
   onClose,
+  isCloseBtn = true,
+  isOpenBtn = true,
 }) => {
   const { isLoading } = useBaseStore();
 
   return (
-    <>
-      <Button
-        color={closeButtonColor}
-        variant={closeButtonVariant}
-        onPress={onClose}
-      >
-        {closeText}
-      </Button>
-      <Button
-        color={openButtonColor}
-        variant={openButtonVariant}
-        onPress={onSubmit}
-        isLoading={isLoading}
-        type={type}
-      >
-        {openText}
-      </Button>
-    </>
+    <div className="flex gap-3">
+      {isCloseBtn && closeText && (
+        <Button
+          color={closeButtonColor}
+          variant={closeButtonVariant}
+          onPress={onClose}
+        >
+          {closeText}
+        </Button>
+      )}
+      {(isOpenBtn || openText) && (
+        <Button
+          color={openButtonColor}
+          variant={openButtonVariant}
+          onPress={onSubmit}
+          isLoading={isLoading}
+          type={type}
+        >
+          {openText}
+        </Button>
+      )}
+    </div>
   );
 };
 

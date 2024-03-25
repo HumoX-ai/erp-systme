@@ -8,7 +8,11 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        custom_input_bg_color: "#F5F7FA",
+      },
+    },
   },
   darkMode: "class",
   plugins: [
