@@ -1,0 +1,35 @@
+{
+  "brands": [
+    {
+      "id": "5bd4",
+      "brand_name": "Apple"
+    }
+  ],
+  "brand-products": [
+    {
+      "id": "2ae0",
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2F54ee03c4-8506-4781-90de-4a7532983533?alt=media&token=64c2bb4f-66b4-43d9-a746-cc454098febe",
+      "product_name": "iphone",
+      "price": 100,
+      "sell_price": 130,
+      "count": 10
+    }
+  ],
+  "warehouse": [
+    {
+      "id": "7cab",
+      "product_name": "iphone",
+      "price": 111,
+      "sell_price": 111,
+      "brand_name": {
+        "value": "5bd4",
+        "label": "Apple"
+      },
+      "count": 112,
+      "color": "212",
+      "description": "12121",
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2Fbcdf521c-e5b2-48b0-8019-7b67d656e76e?alt=media&token=7c2e9620-e498-41c4-a89c-372407f367c2",
+      "status": true
+    }
+  ]
+}

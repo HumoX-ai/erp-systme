@@ -2,18 +2,63 @@ import { lazy } from "react";
 
 export const protectedRoutes = [
   {
-    key: "Bosh panel",
+    key: "dashboard",
     path: "/dashboard",
     component: lazy(() => import("../../modules/dashboard/index")),
+    children: [],
   },
   {
-    key: "Mahsulotlar",
+    key: "products",
     path: "/products",
     component: lazy(() => import("../../modules/products/index")),
+    children: [],
   },
   {
-    key: "Statistika",
-    path: "stats",
+    key: "statistics",
+    path: "/stats",
     component: lazy(() => import("../../modules/stats/index")),
+    children: [],
+  },
+  {
+    key: "receiveProducts",
+    path: "/receive-product",
+    component: lazy(() => import("../../modules/receiveProducts/index")),
+    children: [
+      {
+        key: "brands",
+        childrenPath: "/brands",
+        component: lazy(
+          () => import("../../modules/receiveProducts/routes/ProductBrends")
+        ),
+      },
+      {
+        key: "products",
+        childrenPath: "/products",
+        component: lazy(
+          () => import("../../modules/receiveProducts/routes/BrendProducts")
+        ),
+      },
+    ],
+  },
+  {
+    key: "warehouse",
+    path: "/warehouse",
+    component: lazy(() => import("../../modules/warehouse/index")),
+    children: [
+      {
+        key: "main",
+        childrenPath: "/",
+        component: lazy(
+          () => import("../../modules/warehouse/routes/WareHouse")
+        ),
+      },
+      {
+        key: "form",
+        childrenPath: "/form",
+        component: lazy(
+          () => import("../../modules/warehouse/routes/WareHouseForm")
+        ),
+      },
+    ],
   },
 ];
