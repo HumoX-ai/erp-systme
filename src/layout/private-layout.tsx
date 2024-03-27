@@ -13,7 +13,7 @@ const PageLayout = ({
     <div>
       <NavbarComponent header={header} />
 
-      <div className="px-7">{children}</div>
+      <div className="px-4">{children}</div>
     </div>
   );
 };

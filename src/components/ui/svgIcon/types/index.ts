@@ -9,6 +9,9 @@ export type SvgIconContainerProps = {
     | "filials"
     | "statistics"
     | "receive-product"
-    | "upload-img";
+    | "upload-img"
+    | "undelivered-products"
+    | "delivered-products"
+    | "employee";
   className?: string;
 };

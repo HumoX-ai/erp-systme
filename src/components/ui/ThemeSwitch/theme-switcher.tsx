@@ -35,7 +35,7 @@ export function ThemeSwitcher() {
           getTheme();
         }}
         size="md"
-        color="secondary"
+        color="primary"
         thumbIcon={({ isSelected, className }) =>
           isSelected ? (
             <LuSun className={className} />

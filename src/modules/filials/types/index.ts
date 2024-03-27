@@ -14,9 +14,6 @@ export interface IFilialFormProps {
 
 export interface IFilialSetProps {
   data: IFilial[];
-  page: number;
-  pages: number;
-  setPage: (page: number) => void;
   deleteItem: (id: number) => void;
   setChange: (change: boolean) => void;
   setSelectItem: (item: IFilial) => void;

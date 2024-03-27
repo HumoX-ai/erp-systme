@@ -1,22 +1,13 @@
-import {
-  Pagination,
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
-} from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { IProduct } from "../types";
+import axios from "axios";
 import ProductFilter from "./product-filter";
+import { CustomTable } from "../../../components";
 
 const ProductTable = ({ filialName }: { filialName: string }) => {
   const [data, setData] = useState<IProduct[]>([]);
   const [filteredData, setFilteredData] = useState<IProduct[]>([]);
   const [page, setPage] = useState(1);
-  const [pages, setPages] = useState(0);
   const limit = 10;
 
   useEffect(() => {
@@ -27,7 +18,6 @@ const ProductTable = ({ filialName }: { filialName: string }) => {
         );
         setData(response.data);
         setFilteredData(response.data);
-        setPages(Math.ceil(response.data.length / limit));
       } catch (error) {
         console.log(error);
       }
@@ -40,56 +30,29 @@ const ProductTable = ({ filialName }: { filialName: string }) => {
       item.product.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredData(filtered);
-    setPages(Math.ceil(filtered.length / limit));
     setPage(1);
   };
 
   const newData = filteredData.slice((page - 1) * limit, page * limit);
 
+  const columns = [
+    { label: "#", dataIndex: "id" },
+    { label: "Mahsulot", dataIndex: "product" },
+    { label: "Soni", dataIndex: "quantity" },
+    { label: "Narxi", dataIndex: "price" },
+    { label: "Sotuv narxi", dataIndex: "sold_price" },
+  ];
+
   return (
     <>
       <ProductFilter onSearch={handleSearch} />
-      <Table
+      <CustomTable
+        columns={columns}
+        rows={newData}
+        onRowClick={(record, rows) => console.log(record, rows)}
+        isPagination={true}
         className="overflow-x-scroll max-w-[calc(100vw-50px)] mt-8"
-        aria-label="table"
-        isStriped
-        bottomContent={
-          <div className="flex w-full justify-end">
-            <Pagination
-              isCompact
-              showControls
-              showShadow
-              color="primary"
-              initialPage={page}
-              page={page}
-              total={pages}
-              onChange={(page) => setPage(page)}
-            />
-          </div>
-        }
-      >
-        <TableHeader>
-          <TableColumn>#</TableColumn>
-          <TableColumn>Mahsulot</TableColumn>
-          <TableColumn>Soni</TableColumn>
-          <TableColumn>Narxi</TableColumn>
-          <TableColumn>Sotuv narxi</TableColumn>
-        </TableHeader>
-        <TableBody
-          emptyContent={"Mahsulotlar mavjud emas"}
-          isLoading={!data?.length ? true : false}
-        >
-          {newData.map((item, index) => (
-            <TableRow key={item.id}>
-              <TableCell>{index + 1}</TableCell>
-              <TableCell>{item.product}</TableCell>
-              <TableCell>{item.quantity}</TableCell>
-              <TableCell>{item.price}</TableCell>
-              <TableCell>{item.sold_price}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      />
     </>
   );
 };

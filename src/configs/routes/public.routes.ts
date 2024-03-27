@@ -44,10 +44,45 @@ export const protectedRoutes = [
     key: "filials",
     path: "/filials",
     component: lazy(() => import("../../modules/filials/index")),
+    children: [
+      {
+        key: "productTable",
+        childrenPath: "/product-table",
+        component: lazy(
+          () => import("../../modules/filials/routes/FilialProducts")
+        ),
+      },
+      {
+        key: "filialTable",
+        childrenPath: "/filial-table",
+        component: lazy(() => import("../../modules/filials/routes/Filial")),
+      },
+    ],
   },
   {
     key: "filialId",
     path: "/filials/:id",
-    component: lazy(() => import("../../modules/filials/filial-product-page")),
+    component: lazy(
+      () => import("../../modules/filials/routes/FilialProducts")
+    ),
+  },
+  {
+    key: "employee",
+    path: "/employee",
+    component: lazy(() => import("../../modules/employee/index")),
+  },
+  {
+    key: "undeliveredProducts",
+    path: "/undelivered-products",
+    component: lazy(
+      () => import("../../modules/cashier/undelivered-products.tsx")
+    ),
+  },
+  {
+    key: "deliveredProducts",
+    path: "/delivered-products",
+    component: lazy(
+      () => import("../../modules/cashier/delivered-products.tsx")
+    ),
   },
 ];

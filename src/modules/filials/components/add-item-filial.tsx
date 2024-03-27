@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { IFilialFormProps } from "../types";
 import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
@@ -7,20 +7,10 @@ import { Button, Input } from "@nextui-org/react";
 import { validationSchema } from "../scheme";
 import CustomModal from "../../../components/common/Modal/Modal";
 import "react-toastify/dist/ReactToastify.css";
-
-const notify = () => {
-  toast.success("Mahsulot muvaffaqiyatli qo'shildi", {
-    position: "bottom-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-    transition: Bounce,
-  });
-};
+import {
+  notifyError,
+  notifySuccess,
+} from "../../../components/common/ModalFooter/Toast/react-toast";
 
 export default function AddItem({ open, setOpen, setData }: IFilialFormProps) {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +18,6 @@ export default function AddItem({ open, setOpen, setData }: IFilialFormProps) {
     filialName: "",
     address: "",
     phone: "",
-    quantity: "",
   };
 
   const handleSubmit = async (
@@ -46,7 +35,6 @@ export default function AddItem({ open, setOpen, setData }: IFilialFormProps) {
         filialName: values.filialName,
         address: values.address,
         phone: values.phone,
-        quantity: Number(values.quantity),
       });
 
       console.log(response);
@@ -54,9 +42,11 @@ export default function AddItem({ open, setOpen, setData }: IFilialFormProps) {
       setData((prev) => [...prev, response.data]);
       resetForm();
       setIsLoading(false);
-      notify();
+      notifySuccess({ message: "Filial muvaffaqiyatli qo'shildi" });
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
+      notifyError({ message: "Filial qo'shishda xatolik yuz berdi" });
     }
   };
 
@@ -104,20 +94,6 @@ export default function AddItem({ open, setOpen, setData }: IFilialFormProps) {
           component="p"
         />
       </div>
-      <div>
-        <Field
-          type="number"
-          name="quantity"
-          as={Input}
-          size="sm"
-          placeholder="Mahsulot soni"
-        />
-        <ErrorMessage
-          name="quantity"
-          className="text-red-500 text-sm"
-          component="p"
-        />
-      </div>
     </Form>
   );
 
@@ -143,7 +119,7 @@ export default function AddItem({ open, setOpen, setData }: IFilialFormProps) {
           <CustomModal
             isOpen={open}
             setIsOpen={() => setOpen(false)}
-            modalHeaderTitle="Maishiy texnikalar qo'shish"
+            modalHeaderTitle="Filial qo'shish"
             modalBodyChildren={modalBody}
             modalFooterChildren={modalFooter}
           />

@@ -31,7 +31,6 @@ export default function SetItemsFilial({
             filialName: selectItem?.filialName || "",
             address: selectItem?.address || "",
             phone: selectItem?.phone || "",
-            quantity: selectItem?.quantity || "",
           }}
           validationSchema={validationSchema}
           onSubmit={async (values, { resetForm }) => {
@@ -46,7 +45,6 @@ export default function SetItemsFilial({
                   return {
                     ...item,
                     ...values,
-                    quantity: Number(values.quantity),
                   };
                 }
                 return item;
@@ -81,12 +79,6 @@ export default function SetItemsFilial({
                 <Field type="text" name="phone" as={Input} />
                 <ErrorMessage
                   name="phone"
-                  component="div"
-                  className="text-red-500"
-                />
-                <Field type="number" name="quantity" as={Input} />
-                <ErrorMessage
-                  name="quantity"
                   component="div"
                   className="text-red-500"
                 />

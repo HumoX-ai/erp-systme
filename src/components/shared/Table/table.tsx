@@ -38,6 +38,7 @@ const CustomTable: FC<CustomTableTypes> = ({
   return (
     <Table
       aria-label="Custom table"
+      isStriped
       {...rest}
       bottomContent={
         isPagination ? (
