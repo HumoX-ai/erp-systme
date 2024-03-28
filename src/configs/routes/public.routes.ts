@@ -61,4 +61,16 @@ export const protectedRoutes = [
       },
     ],
   },
+  {
+    key: "products",
+    path: "/sell-products",
+    component: lazy(() => import("../../modules/sellProducts/index")),
+    children: [],
+  },
+  {
+    key: "archive",
+    path: "/archive",
+    component: lazy(() => import("../../modules/archive/index")),
+    children: [],
+  },
 ];

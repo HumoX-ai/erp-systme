@@ -11,9 +11,11 @@ import { ThemeSwitcher } from "../components";
 const PageLayout = ({
   header,
   children,
+  headerComponent,
 }: {
   header: string;
   children: ReactNode;
+  headerComponent?: ReactNode;
 }) => {
   return (
     <div>
@@ -22,6 +24,7 @@ const PageLayout = ({
           <p className="font-bold text-inherit text-xl">{header}</p>
         </NavbarBrand>
         <NavbarContent justify="end">
+          {headerComponent}
           <NavbarItem className="hidden lg:flex">
             <ThemeSwitcher />
           </NavbarItem>

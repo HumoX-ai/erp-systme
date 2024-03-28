@@ -77,7 +77,6 @@ const BrendProductForm = forwardRef((_props, innerRef: PropsRefTypes) => {
                     <FileUpload
                       image={values?.image}
                       setFieldValue={setFieldValue}
-                      className="h-56"
                     />
                     <div className="text-red-500">
                       <ErrorMessage name={"image"} />

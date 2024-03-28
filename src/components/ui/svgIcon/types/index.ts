@@ -14,6 +14,11 @@ export type SvgIconContainerProps = {
     | "arrow-horizontal"
     | "arrow-vertikal"
     | "check"
-    | "backArrow";
+    | "backArrow"
+    | "archive"
+    | "shopping-cart"
+    | "plus-icon"
+    | "minus-icon"
+    | "remove-icon";
   className?: string;
 };

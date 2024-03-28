@@ -9,7 +9,10 @@ export type WareHouseDataTypes = {
   [wareHouseFK.key1]: string;
   [wareHouseFK.key2]: number | string;
   [wareHouseFK.key3]: string | number;
-  [wareHouseFK.key4]: string | null;
+  [wareHouseFK.key4]: {
+    label: string | null;
+    value: string | null;
+  };
   [wareHouseFK.key5]: string | number;
   [wareHouseFK.key6]: string;
   [wareHouseFK.key7]: string;

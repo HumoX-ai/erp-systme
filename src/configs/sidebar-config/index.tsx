@@ -1,7 +1,13 @@
 const navigationLinks: {
   key: string;
   path: string;
-  icon?: "home" | "product" | "statistics" | "receive-product" | "warehouse";
+  icon?:
+    | "home"
+    | "product"
+    | "statistics"
+    | "receive-product"
+    | "warehouse"
+    | "archive";
   title: string;
   role: string;
 }[] = [
@@ -38,6 +44,20 @@ const navigationLinks: {
     icon: "warehouse",
     path: "/warehouse",
     key: "warehouse",
+    role: "admin",
+  },
+  {
+    title: "Mahsulotlar",
+    icon: "receive-product",
+    path: "/sell-products",
+    key: "products",
+    role: "admin",
+  },
+  {
+    title: "Arxiv",
+    icon: "archive",
+    path: "/archive",
+    key: "archive",
     role: "admin",
   },
 ];

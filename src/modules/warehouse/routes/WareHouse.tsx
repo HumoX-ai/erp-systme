@@ -23,7 +23,9 @@ const WareHouse = () => {
   return (
     <div>
       <HeaderLayout
-        content={<CustomSearch placeholder="Qidirish..." />}
+        content={
+          <CustomSearch placeholder="Qidirish..." size="sm" className="w-1/6" />
+        }
         btnText="Mahsulot qo'shish"
         onPress={() => {
           const id = drawer?.initialValues?.id;
