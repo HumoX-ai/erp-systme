@@ -18,7 +18,7 @@ const CustomDropdown: React.FC<DropdownProps> = ({
 
   const handleSelect = (option: Option) => {
     setIsOpen(false);
-    onSelect(option);
+    onSelect && onSelect(option);
   };
 
   return (

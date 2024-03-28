@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Image } from "@nextui-org/react";
 
 export const PreviewImage = ({ file }: { file: string | File }) => {
   const [preview, setPreview] = useState<string | ArrayBuffer | null>(null);
@@ -17,10 +18,9 @@ export const PreviewImage = ({ file }: { file: string | File }) => {
   }, [file]);
 
   return (
-    <img
-      className="object-contain w-full h-full"
+    <Image
+      className="w-72 h-72 object-contain rounded-3xl"
       src={preview as string}
-      alt="upload-img"
       width={190}
       height={190}
     />

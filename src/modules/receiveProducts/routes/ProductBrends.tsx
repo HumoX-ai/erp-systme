@@ -1,10 +1,11 @@
-import { Button } from "@nextui-org/react";
+import { useEffect } from "react";
+
 import ProductBrendsTable from "../components/ProductBrends/ProductBrendsTable";
 import ProductBrendsModal from "../container/ProductBrendsModal";
-import { useEffect } from "react";
 import useReceiveProduct from "../store";
 import useBaseStore from "../../../store/base";
 import { getRequest } from "../../../services/getRequest";
+import { HeaderLayout } from "../../../layout/header";
 
 const ProductBrends = () => {
   const { setBrandData, setDrawer } = useReceiveProduct();
@@ -19,15 +20,11 @@ const ProductBrends = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between py-5">
-        <div className="text-xl font-semibold">Mavjud Brend nomlari</div>
-        <Button
-          onPress={() => setDrawer({ isOpen: true })}
-          color="primary"
-        >
-          Brend yaratish
-        </Button>
-      </div>
+      <HeaderLayout
+        btnText="Brend qo'shish"
+        headerTitle="Mavjud brend nomlari"
+        onPress={() => setDrawer({ isOpen: true })}
+      />
 
       <ProductBrendsTable />
       <ProductBrendsModal />

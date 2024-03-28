@@ -32,9 +32,9 @@ const WareHouseTable = () => {
           <Image
             width={50}
             height={50}
-            alt="Does not upload!"
+            alt="warehouse-product-img"
             src={item?.image as string}
-            className="w-14 h-14"
+            className="w-14 h-14 object-contain"
           />
         ) : (
           "Rasm yuklanmadi!"
