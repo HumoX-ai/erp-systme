@@ -1,10 +1,11 @@
+import { Image } from "@nextui-org/react";
+
 import { CustomTable } from "../../../../components";
 import TableDropDown from "../../../../components/shared/TableDropDown/table-drop-down";
 import useBaseStore from "../../../../store/base";
 import { deleteRequest } from "../../../../services/deleteRequest";
 import useReceiveProduct from "../../store";
 import { BrandProductDataTypes } from "../../types";
-import { Image } from "@nextui-org/react";
 import { brandProductFK } from "../../constants";
 
 const BrendProductTable = () => {
@@ -27,8 +28,9 @@ const BrendProductTable = () => {
       render: (item: BrandProductDataTypes) =>
         item?.image ? (
           <Image
+            className="w-14 h-14 object-contain"
             width={50}
-            alt="Does not upload!"
+            alt="Receive-product-img!"
             src={item?.image as string}
           />
         ) : (

@@ -22,7 +22,7 @@ export interface Option {
 
 export interface DropdownProps {
   options: Option[];
-  onSelect: (value: Option) => void;
+  onSelect?: (value: Option) => void;
   errorName?: string;
   className?: string;
   initialValue?: Option;

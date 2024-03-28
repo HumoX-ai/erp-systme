@@ -10,7 +10,8 @@ const navigationLinks: {
     | "employee"
     | "undelivered-products"
     | "delivered-products"
-    | "warehouse";
+    | "warehouse"
+    | "archive";
   title: string;
   role: string;
 }[] = [
@@ -76,6 +77,20 @@ const navigationLinks: {
     path: "/delivered-products",
     key: "delivered-product",
     role: "all",
+  },
+  {
+    title: "Mahsulotlar",
+    icon: "receive-product",
+    path: "/sell-products",
+    key: "products",
+    role: "admin",
+  },
+  {
+    title: "Arxiv",
+    icon: "archive",
+    path: "/archive",
+    key: "archive",
+    role: "admin",
   },
 ];
 

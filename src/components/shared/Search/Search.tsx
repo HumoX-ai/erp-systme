@@ -7,7 +7,8 @@ export const CustomSearch: React.FC<{
   placeholder: string;
   className?: string;
   style?: React.CSSProperties;
-}> = ({ placeholder, className, style }): JSX.Element => {
+  size?: "sm" | "md" | "lg";
+}> = ({ placeholder, className, style, size }): JSX.Element => {
   const { setSearchParams, deleteParams, searchParams } = useSearchparams();
 
   const changedSearchValue = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +23,7 @@ export const CustomSearch: React.FC<{
     <Input
       isClearable
       variant="faded"
-      size="sm"
+      size={size}
       type="search"
       style={style}
       className={className}

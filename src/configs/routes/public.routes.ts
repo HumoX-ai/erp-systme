@@ -106,4 +106,16 @@ export const protectedRoutes = [
       () => import("../../modules/cashier/delivered-products.tsx")
     ),
   },
+  {
+    key: "products",
+    path: "/sell-products",
+    component: lazy(() => import("../../modules/sellProducts/index")),
+    children: [],
+  },
+  {
+    key: "archive",
+    path: "/archive",
+    component: lazy(() => import("../../modules/archive/index")),
+    children: [],
+  },
 ];

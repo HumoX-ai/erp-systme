@@ -24,7 +24,7 @@ export type BrandProductDataTypes = {
   [brandProductFK.key5]: string | number;
 };
 
-export type PropsRefTypes = ForwardedRef<FormikProps<BrandProductDataTypes>>;
+export type PropsRefTypes = ForwardedRef<FormikProps<any>>;
 
 export type ReceiveProductStoreTypes = {
   brandData: BrandDataTypes[];

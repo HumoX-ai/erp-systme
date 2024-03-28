@@ -64,7 +64,6 @@ const CustomTable: FC<CustomTableTypes> = ({
       </TableHeader>
       {items?.length ? (
         <TableBody
-          emptyContent={"No data"}
           isLoading={refresh}
           loadingContent={<CustomLoading loading={refresh} />}
         >
@@ -88,7 +87,7 @@ const CustomTable: FC<CustomTableTypes> = ({
           })}
         </TableBody>
       ) : (
-        <TableBody emptyContent={"Ma'lumot yo'q."}>{[]}</TableBody>
+        <TableBody emptyContent={"Ma'lumot yo'q"}>{[]}</TableBody>
       )}
     </Table>
   );

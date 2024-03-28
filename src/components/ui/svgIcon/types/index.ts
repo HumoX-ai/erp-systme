@@ -18,6 +18,11 @@ export type SvgIconContainerProps = {
     | "upload-img"
     | "undelivered-products"
     | "delivered-products"
-    | "employee";
+    | "employee"
+    | "archive"
+    | "shopping-cart"
+    | "plus-icon"
+    | "minus-icon"
+    | "remove-icon";
   className?: string;
 };
