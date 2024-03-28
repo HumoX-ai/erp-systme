@@ -19,7 +19,9 @@ export const postRequest = async ({
   setButtonLoading ? setButtonLoading(true) : null;
 
   try {
-    await axios.post(`${appConfig.apiPrefix}/${path}`, values, { params: params });
+    await axios.post(`${appConfig.apiPrefix}/${path}`, values, {
+      params: params,
+    });
   } catch (error) {
     console.log(error);
   } finally {

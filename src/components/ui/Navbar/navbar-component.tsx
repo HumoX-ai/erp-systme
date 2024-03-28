@@ -17,7 +17,7 @@ import {
 import { ThemeSwitcher } from "../ThemeSwitch/theme-switcher";
 import { useAuthStore } from "../../../store/auth";
 
-const NavbarComponent = () => {
+const NavbarComponent = ({ header }: { header: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { onSignOutSuccess, user } = useAuthStore();
 
@@ -77,7 +77,7 @@ const NavbarComponent = () => {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarBrand>
           <LinkTo to={"/"}>
-            <p className="font-bold text-inherit">Bosh sahifa</p>
+            <p className="font-bold text-inherit">{header}</p>
           </LinkTo>
         </NavbarBrand>
       </NavbarContent>

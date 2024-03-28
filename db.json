@@ -1,0 +1,108 @@
+{
+  "filial": [
+    {
+      "filialName": "Toshkent MCHJ jamiyati 1",
+      "address": "Samarqand viloyati, Yangihayot tumani, 52-uy",
+      "phone": "+998 93 598 05 39",
+      "quantity": 3000,
+      "id": "8256"
+    },
+    {
+      "filialName": "4",
+      "address": "5",
+      "phone": "4",
+      "quantity": 4,
+      "id": "5ffd"
+    },
+    {
+      "id": "c045",
+      "filialName": "Markaz",
+      "address": "3",
+      "phone": "4",
+      "quantity": 5
+    },
+    {
+      "id": "0009",
+      "filialName": "333",
+      "address": "3",
+      "phone": "3",
+      "quantity": 3
+    },
+    {
+      "id": "d597",
+      "filialName": "asd",
+      "address": "asdas",
+      "phone": "asd",
+      "quantity": 2
+    },
+    {
+      "id": "0cec",
+      "filialName": "Chilonzor, 12-avenyu",
+      "address": "Toshkent Shahar",
+      "phone": "+998 000 00 00",
+      "quantity": 200
+    }
+  ],
+  "products": [
+    {
+      "filialName": "Toshkent MCHJ jamiyati 1",
+      "product": "Samsung",
+      "quantity": 20,
+      "sold_price": 504,
+      "price": 1000,
+      "id": "1"
+    },
+    {
+      "filialName": "Toshkent MCHJ jamiyati 1",
+      "product": "Iphone 11",
+      "quantity": 20,
+      "sold_price": "400",
+      "price": "400",
+      "id": "6d7f"
+    },
+    {
+      "filialName": "Toshkent MCHJ jamiyati 1",
+      "product": "Iphone 12 Pro",
+      "quantity": 20,
+      "sold_price": "450",
+      "price": "430",
+      "id": "6d77"
+    }
+  ],
+  "employees": [
+    {
+      "id": "1",
+      "name": "Abdulloh Abdullohov",
+      "birthDate": "2000-01-01",
+      "comeDate": "2020-01-01",
+      "cost": 10000
+    },
+    {
+      "id": "2",
+      "name": "Abdulloh Abdullohov",
+      "birthDate": "2000-01-01",
+      "comeDate": "2020-01-01",
+      "cost": 10000
+    }
+  ],
+  "undelivered-products": [
+    {
+      "id": "1",
+      "orderDate": "2020-01-01",
+      "name": "Abdulloh Abdullohov",
+      "productName": "Samsung",
+      "quantity": 2,
+      "address": "Toshkent Shahar",
+      "status": "delivered"
+    },
+    {
+      "id": "2",
+      "orderDate": "2022-01-01",
+      "name": "Humoyun Adilov",
+      "productName": "Iphone 12",
+      "quantity": 5,
+      "address": "Toshkent Viloyati",
+      "status": "undelivered"
+    }
+  ]
+}

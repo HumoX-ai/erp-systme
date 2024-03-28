@@ -11,21 +11,17 @@ export const getRequest = async ({
   setData?: (data: any) => void;
   params?: { [k: string]: string };
 }) => {
-  console.log(appConfig.apiPrefix);
 
   try {
     const response = await axios.get(`${appConfig.apiPrefix}/${path}`, {
       params: params,
     });
 
-    if (response?.data) {
-      setData && setData(response?.data);
-    } else {
-      setData && setData([]);
-    }
+    setData && setData(response?.data);
 
     return response?.data;
   } catch (error) {
     console.log(error);
+    setData && setData([]);
   }
 };

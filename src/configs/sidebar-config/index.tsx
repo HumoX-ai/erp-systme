@@ -1,7 +1,16 @@
 const navigationLinks: {
   key: string;
   path: string;
-  icon?: "home" | "product" | "statistics" | "receive-product" | "warehouse";
+  icon?:
+    | "home"
+    | "product"
+    | "statistics"
+    | "receive-product"
+    | "filials"
+    | "employee"
+    | "undelivered-products"
+    | "delivered-products"
+    | "warehouse";
   title: string;
   role: string;
 }[] = [
@@ -39,6 +48,34 @@ const navigationLinks: {
     path: "/warehouse",
     key: "warehouse",
     role: "admin",
+  },
+  {
+    title: "Filiallar",
+    icon: "filials",
+    path: "/filials",
+    key: "filials",
+    role: "all",
+  },
+  {
+    title: "Xodimlar",
+    icon: "employee",
+    path: "/employee",
+    key: "employee",
+    role: "admin",
+  },
+  {
+    title: "Yetkazilmagan",
+    icon: "undelivered-products",
+    path: "/undelivered-products",
+    key: "undelivered-product",
+    role: "all",
+  },
+  {
+    title: "Yetkazilgan",
+    icon: "delivered-products",
+    path: "/delivered-products",
+    key: "delivered-product",
+    role: "all",
   },
 ];
 

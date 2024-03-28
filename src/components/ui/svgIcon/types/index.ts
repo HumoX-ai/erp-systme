@@ -6,14 +6,18 @@ export type SvgIconContainerProps = {
   iconName:
     | "home"
     | "product"
-    | "statistics"
-    | "receive-product"
-    | "upload-img"
     | "search"
     | "warehouse"
     | "arrow-horizontal"
     | "arrow-vertikal"
     | "check"
-    | "backArrow";
+    | "backArrow"
+    | "filials"
+    | "statistics"
+    | "receive-product"
+    | "upload-img"
+    | "undelivered-products"
+    | "delivered-products"
+    | "employee";
   className?: string;
 };

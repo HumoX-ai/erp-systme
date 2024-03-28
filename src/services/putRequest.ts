@@ -19,7 +19,9 @@ export const putRequest = async ({
   setButtonLoading ? setButtonLoading(true) : null;
 
   try {
-    await axios.put(`${appConfig.apiPrefix}/${path}`, values, { params: params });
+    await axios.put(`${appConfig.apiPrefix}/${path}`, values, {
+      params: params,
+    });
   } catch (error) {
     console.log(error);
   } finally {
