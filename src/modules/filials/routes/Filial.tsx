@@ -1,17 +1,14 @@
-import { Button, ScrollShadow, Spinner } from "@nextui-org/react";
+import { Button, ScrollShadow } from "@nextui-org/react";
 import SetItemsFilial from "../components/set-item-filial";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { IFilial } from "../types";
+import { useEffect } from "react";
 import AddItemFilial from "../components/add-item-filial";
 import FilialTable from "../components/filial-table";
 import { getRequest } from "../../../services/getRequest";
+import { deleteRequest } from "../../../services/deleteRequest";
+import useFilialStore from "../store";
 
 const Filial = () => {
-  const [data, setData] = useState<IFilial[]>([]);
-  const [open, setOpen] = useState(false);
-  const [change, setChange] = useState(false);
-  const [selectItem, setSelectItem] = useState<IFilial>();
+  const { data, setData, setOpen, setChange, selectItem } = useFilialStore();
 
   useEffect(() => {
     const getItems = async () => {
@@ -26,11 +23,14 @@ const Filial = () => {
     };
 
     getItems();
-  }, []);
+  }, [setData]);
 
   const deleteItem = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:8080/filial/${id}`);
+      deleteRequest({
+        path: `filial/${id}`,
+        setRefresh: setChange,
+      });
       const newData = data.filter((item) => item.id !== id);
       setData(newData);
     } catch (error) {
@@ -45,27 +45,11 @@ const Filial = () => {
           <Button color="primary" onClick={() => setOpen(true)}>
             Filial qo'shish
           </Button>
-          <AddItemFilial open={open} setOpen={setOpen} setData={setData} />
-          <SetItemsFilial
-            data={data}
-            setData={setData}
-            setOpen={setChange}
-            open={change}
-            selectItem={selectItem!}
-          />
+          <AddItemFilial />
+          <SetItemsFilial selectItem={selectItem!} />
         </div>
-        {data.length === 0 ? (
-          <Spinner className="h-[90vh] flex items-center justify-center" />
-        ) : (
-          <>
-            <FilialTable
-              data={data}
-              deleteItem={deleteItem}
-              setChange={setChange}
-              setSelectItem={setSelectItem}
-            />
-          </>
-        )}
+
+        <FilialTable deleteItem={deleteItem} />
       </ScrollShadow>
     </div>
   );

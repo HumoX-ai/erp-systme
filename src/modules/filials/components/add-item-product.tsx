@@ -12,6 +12,8 @@ import { IoSearch } from "react-icons/io5";
 import { IProduct } from "../types";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { putRequest } from "../../../services/putRequest";
+import useBaseStore from "../../../store/base";
 
 export default function AddItemProduct({
   filialName,
@@ -27,10 +29,13 @@ export default function AddItemProduct({
   const [productQuantity, setProductQuantity] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
 
+  const { setRefresh } = useBaseStore();
+  // console.log(filialName);
+
   useEffect(() => {
     const getItems = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/products`);
+        const response = await axios.get(`http://localhost:3000/products`);
         setData(response.data);
       } catch (error) {
         console.log(error);
@@ -47,18 +52,19 @@ export default function AddItemProduct({
   const handleAddProduct = async () => {
     if (selectedProduct && productQuantity > 0) {
       try {
-        await axios.put(
-          `http://localhost:8080/products/${selectedProduct.id}`,
-          {
+        putRequest({
+          path: `products/${selectedProduct.id}`,
+          values: {
             filialName,
             product: selectedProduct.product,
             quantity: productQuantity,
             sold_price: selectedProduct.sold_price,
             price: selectedProduct.price,
-          }
-        );
+          },
+          setRefresh,
+        });
         const response = await axios.get(
-          `http://localhost:8080/products?filialName=${filialName}`
+          `http://localhost:3000/products?filialName=${filialName}`
         );
         setData(response.data);
         navigate(0);

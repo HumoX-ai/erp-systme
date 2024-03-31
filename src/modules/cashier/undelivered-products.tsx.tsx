@@ -1,25 +1,34 @@
 // UndeliveredProducts.tsx
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import PageLayout from "../../layout/private-layout";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { Product } from "./types";
 import DeliveredModal from "./components/delivered-modal";
 import UndeliveredTable from "./components/undelivered-table";
+import { getRequest } from "../../services/getRequest";
+import { putRequest } from "../../services/putRequest";
+import useBaseStore from "../../store/base";
+import useUndeliveredProductsStore from "./store";
+import { useNavigate } from "react-router-dom";
 
 const UndeliveredProducts = () => {
-  const [undeliveredProducts, setUndeliveredProducts] = useState<Product[]>([]);
+  const {
+    isModalOpen,
+    setIsModalOpen,
+    undeliveredProducts,
+    setUndeliveredProducts,
+    selectedProduct,
+    setSelectedProduct,
+  } = useUndeliveredProductsStore();
+
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const { setRefresh } = useBaseStore();
 
   useEffect(() => {
-    const response = axios.get<Product[]>(
-      "http://localhost:8080/undelivered-products"
-    );
-    response.then((data) => setUndeliveredProducts(data.data));
-    response.catch((error) => console.log(error));
-  }, []);
+    getRequest({
+      path: "undelivered-products",
+      setData: setUndeliveredProducts,
+    });
+  }, [setUndeliveredProducts]);
 
   const filteredUndeliveredProducts = undeliveredProducts.filter(
     (product) => product.status === "undelivered"
@@ -31,10 +40,23 @@ const UndeliveredProducts = () => {
   };
   const handleConfirmDelivery = async () => {
     if (selectedProduct) {
-      await axios.patch<Product>(
-        `http://localhost:8080/undelivered-products/${selectedProduct.id}`,
-        { status: "delivered" }
-      );
+      // await axios.patch<Product>(
+      //   `http://localhost:3000/undelivered-products/${selectedProduct.id}`,
+      //   { status: "delivered" }
+      // );
+      putRequest({
+        path: `undelivered-products/${selectedProduct.id}`,
+        values: {
+          id: selectedProduct.id,
+          orderDate: selectedProduct.orderDate,
+          name: selectedProduct.name,
+          productName: selectedProduct.productName,
+          quantity: selectedProduct.quantity,
+          address: selectedProduct.address,
+          status: "delivered",
+        },
+        setRefresh,
+      });
       const updatedProducts: Product[] = undeliveredProducts.filter(
         (product) => product.id !== selectedProduct.id
       );

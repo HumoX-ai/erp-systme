@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
 import { CustomTable } from "../../components";
-import axios from "axios";
 import PageLayout from "../../layout/private-layout";
+import { getRequest } from "../../services/getRequest";
 
 const Employee = () => {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-    const response = axios.get("http://localhost:8080/employees");
-    response.then((data) => setEmployees(data.data));
-    response.catch((error) => console.log(error));
+    try {
+      getRequest({
+        path: "employees",
+        setData: setEmployees,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (

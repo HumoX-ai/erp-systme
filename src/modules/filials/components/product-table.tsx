@@ -1,23 +1,20 @@
 import { useEffect, useState } from "react";
 import { IProduct } from "../types";
-import axios from "axios";
 import ProductFilter from "./product-filter";
 import { CustomTable } from "../../../components";
+import { getRequest } from "../../../services/getRequest";
 
 const ProductTable = ({ filialName }: { filialName: string }) => {
   const [data, setData] = useState<IProduct[]>([]);
   const [filteredData, setFilteredData] = useState<IProduct[]>([]);
-  const [page, setPage] = useState(1);
-  const limit = 10;
 
   useEffect(() => {
     const getItems = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8080/products?filialName=${filialName}`
-        );
-        setData(response.data);
-        setFilteredData(response.data);
+        getRequest({
+          path: `products?filialName=${filialName}`,
+          setData: setData,
+        });
       } catch (error) {
         console.log(error);
       }
@@ -30,10 +27,7 @@ const ProductTable = ({ filialName }: { filialName: string }) => {
       item.product.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredData(filtered);
-    setPage(1);
   };
-
-  const newData = filteredData.slice((page - 1) * limit, page * limit);
 
   const columns = [
     { label: "#", dataIndex: "id" },
@@ -48,7 +42,7 @@ const ProductTable = ({ filialName }: { filialName: string }) => {
       <ProductFilter onSearch={handleSearch} />
       <CustomTable
         columns={columns}
-        rows={newData}
+        rows={filteredData.length > 0 ? filteredData : data}
         onRowClick={(record, rows) => console.log(record, rows)}
         isPagination={true}
         className="overflow-x-scroll max-w-[calc(100vw-50px)] mt-8"

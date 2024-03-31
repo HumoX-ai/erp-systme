@@ -14,7 +14,7 @@ export const brandProductIV = {
   [wareHouseFK.key1]: "",
   [wareHouseFK.key2]: "",
   [wareHouseFK.key3]: "",
-  [wareHouseFK.key4]: null,
+  [wareHouseFK.key4]: { label: null, value: null },
   [wareHouseFK.key5]: "",
   [wareHouseFK.key6]: "",
   [wareHouseFK.key7]: "",

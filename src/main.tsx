@@ -6,7 +6,6 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 import App from "./App.tsx";
 
-// css file
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
