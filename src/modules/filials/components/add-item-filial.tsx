@@ -1,7 +1,4 @@
-import { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { IFilialFormProps } from "../types";
-import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Button, Input } from "@nextui-org/react";
 import { validationSchema } from "../scheme";
@@ -11,9 +8,15 @@ import {
   notifyError,
   notifySuccess,
 } from "../../../components/common/ModalFooter/Toast/react-toast";
+import { postRequest } from "../../../services/postRequest";
+import useBaseStore from "../../../store/base";
+import useFilialStore from "../store";
 
-export default function AddItem({ open, setOpen, setData }: IFilialFormProps) {
-  const [isLoading, setIsLoading] = useState(false);
+export default function AddItem() {
+  const { open, setOpen, addFilial, isLoading, setIsLoading } =
+    useFilialStore();
+  const { setRefresh } = useBaseStore();
+
   const initialValues = {
     filialName: "",
     address: "",
@@ -31,15 +34,18 @@ export default function AddItem({ open, setOpen, setData }: IFilialFormProps) {
   ) => {
     try {
       setIsLoading(true);
-      const response = await axios.post("http://localhost:8080/filial", {
-        filialName: values.filialName,
-        address: values.address,
-        phone: values.phone,
+      postRequest({
+        path: "filial",
+        values: {
+          filialName: values.filialName,
+          address: values.address,
+          phone: values.phone,
+        },
+        setRefresh,
       });
 
-      console.log(response);
       setOpen(false);
-      setData((prev) => [...prev, response.data]);
+      addFilial(values);
       resetForm();
       setIsLoading(false);
       notifySuccess({ message: "Filial muvaffaqiyatli qo'shildi" });

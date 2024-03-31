@@ -1,19 +1,18 @@
 // DeliveredProducts.tsx
 import { useEffect, useState } from "react";
 import PageLayout from "../../layout/private-layout";
-import axios from "axios";
 import { Product } from "./types";
 import DeliveredTable from "./components/delivered-table";
+import { getRequest } from "../../services/getRequest";
 
 const DeliveredProducts = () => {
   const [deliveredProducts, setDeliveredProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const response = axios.get<Product[]>(
-      "http://localhost:8080/undelivered-products"
-    );
-    response.then((data) => setDeliveredProducts(data.data));
-    response.catch((error) => console.log(error));
+    getRequest({
+      path: "undelivered-products",
+      setData: setDeliveredProducts,
+    });
   }, []);
 
   const filteredDeliveredProducts = deliveredProducts.filter(

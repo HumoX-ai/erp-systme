@@ -1,4 +1,4 @@
-const URL = import.meta.env.VITE_URL_DEV
+const URL = import.meta.env.VITE_URL_DEV || "http://localhost:3000";      
 
 const appConfig = {
   apiPrefix: URL,

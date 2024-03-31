@@ -1,5 +1,4 @@
-import { FC, useMemo } from "react";
-import { IFilialSetProps } from "../types";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import {
@@ -10,13 +9,10 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import { CustomTable } from "../../../components";
+import useFilialStore from "../store";
 
-const FilialTable: FC<IFilialSetProps> = ({
-  data,
-  deleteItem,
-  setChange,
-  setSelectItem,
-}) => {
+const FilialTable = ({ deleteItem }: { deleteItem: (id: number) => void }) => {
+  const { data, setChange, setSelectItem, setOpenModal } = useFilialStore();
   const navigate = useNavigate();
 
   const columns = useMemo(
@@ -41,6 +37,7 @@ const FilialTable: FC<IFilialSetProps> = ({
                 onClick={() => {
                   setSelectItem(record);
                   setChange(true);
+                  setOpenModal(true);
                 }}
                 key="edit"
                 color="warning"
@@ -63,17 +60,19 @@ const FilialTable: FC<IFilialSetProps> = ({
         ),
       },
     ],
-    [deleteItem, setChange, setSelectItem]
+    [deleteItem, setChange, setSelectItem, setOpenModal]
   );
   return (
-    <CustomTable
-      columns={columns}
-      rows={data}
-      onRowClick={(record) =>
-        navigate(`/filials/product-table?filialId=${record.id}`)
-      }
-      isPagination
-    />
+    <>
+      <CustomTable
+        columns={columns}
+        rows={data}
+        onRowClick={(record) =>
+          navigate(`/filials/product-table?filialId=${record.id}`)
+        }
+        isPagination
+      />
+    </>
   );
 };
 

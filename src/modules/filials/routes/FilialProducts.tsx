@@ -1,10 +1,10 @@
 import { Button, ScrollShadow, useDisclosure } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { IFilial } from "../types";
 import ProductTable from "../components/product-table";
 import AddItemProduct from "../components/add-item-product";
 import useSearchparams from "../../../utils/hooks/useSearchParams";
+import { getRequest } from "../../../services/getRequest";
 
 const FilialProductPage = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -14,10 +14,10 @@ const FilialProductPage = () => {
   useEffect(() => {
     const getItems = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8080/filial/${searchParams?.filialId}`
-        );
-        setData(response.data);
+        getRequest({
+          path: `filial/${searchParams?.filialId}`,
+          setData,
+        });
       } catch (error) {
         console.log(error);
       }

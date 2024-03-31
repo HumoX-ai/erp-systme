@@ -6,27 +6,6 @@ export interface IFilial {
   quantity: number;
 }
 
-export interface IFilialFormProps {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setData: React.Dispatch<React.SetStateAction<IFilial[]>>;
-}
-
-export interface IFilialSetProps {
-  data: IFilial[];
-  deleteItem: (id: number) => void;
-  setChange: (change: boolean) => void;
-  setSelectItem: (item: IFilial) => void;
-}
-
-export interface IFilialsSetProps {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  data: IFilial[];
-  setData: React.Dispatch<React.SetStateAction<IFilial[]>>;
-  selectItem: IFilial;
-}
-
 export interface IProduct {
   id: number;
   filialName: string;

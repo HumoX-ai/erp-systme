@@ -8,23 +8,26 @@ import {
   Input,
   Spinner,
 } from "@nextui-org/react";
-import { IFilialsSetProps } from "../types";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import axios from "axios";
-import { useState } from "react";
 import { validationSchema } from "../scheme";
+import useBaseStore from "../../../store/base";
+import { putRequest } from "../../../services/putRequest";
+import useFilialStore from "../store";
+import { IFilial } from "../types";
 
 export default function SetItemsFilial({
-  open,
-  setOpen,
-  data,
-  setData,
   selectItem,
-}: IFilialsSetProps) {
-  const [isLoading, setIsLoading] = useState(false);
+}: {
+  selectItem: IFilial;
+}) {
+  const { data, setData, isLoading, setIsLoading, openModal, setOpenModal } =
+    useFilialStore();
+  console.log(open);
+
+  const { setRefresh } = useBaseStore();
 
   return (
-    <Modal isOpen={open} onOpenChange={setOpen} placement="center">
+    <Modal isOpen={openModal} onOpenChange={setOpenModal} placement="top">
       <ModalContent>
         <Formik
           initialValues={{
@@ -36,8 +39,11 @@ export default function SetItemsFilial({
           onSubmit={async (values, { resetForm }) => {
             try {
               setIsLoading(true);
-              await axios.put(`http://localhost:8080/filial/${selectItem.id}`, {
-                ...values,
+
+              putRequest({
+                path: `filial/${selectItem.id}`,
+                values,
+                setRefresh,
               });
 
               const newData = data.map((item) => {
@@ -50,7 +56,7 @@ export default function SetItemsFilial({
                 return item;
               });
               setData(newData);
-              setOpen(false);
+              setOpenModal(false);
               resetForm();
               setIsLoading(false);
             } catch (error) {
@@ -87,7 +93,7 @@ export default function SetItemsFilial({
                 <Button
                   color="danger"
                   variant="light"
-                  onPress={() => setOpen(false)}
+                  onPress={() => setOpenModal(false)}
                 >
                   Bekor qilish
                 </Button>

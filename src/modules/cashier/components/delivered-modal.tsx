@@ -1,13 +1,13 @@
 import { Button } from "@nextui-org/react";
 import CustomModal from "../../../components/common/Modal/Modal";
+import useUndeliveredProductsStore from "../store";
 
 const DeliveredModal = ({
   setIsModalOpen,
-  isModalOpen,
-  selectedProduct,
   handleConfirmDelivery,
 }: // eslint-disable-next-line @typescript-eslint/no-explicit-any
 any) => {
+  const { isModalOpen, selectedProduct } = useUndeliveredProductsStore();
   return (
     <div>
       <CustomModal

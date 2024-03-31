@@ -1,53 +1,10 @@
 {
-  "filial": [
-    {
-      "filialName": "Toshkent MCHJ jamiyati 1",
-      "address": "Samarqand viloyati, Yangihayot tumani, 52-uy",
-      "phone": "+998 93 598 05 39",
-      "quantity": 3000,
-      "id": "8256"
-    },
-    {
-      "filialName": "4",
-      "address": "5",
-      "phone": "4",
-      "quantity": 4,
-      "id": "5ffd"
-    },
-    {
-      "id": "c045",
-      "filialName": "Markaz",
-      "address": "3",
-      "phone": "4",
-      "quantity": 5
-    },
-    {
-      "id": "0009",
-      "filialName": "333",
-      "address": "3",
-      "phone": "3",
-      "quantity": 3
-    },
-    {
-      "id": "d597",
-      "filialName": "asd",
-      "address": "asdas",
-      "phone": "asd",
-      "quantity": 2
-    },
-    {
-      "id": "0cec",
-      "filialName": "Chilonzor, 12-avenyu",
-      "address": "Toshkent Shahar",
-      "phone": "+998 000 00 00",
-      "quantity": 200
-    }
-  ],
+  "filial": [],
   "products": [
     {
       "filialName": "Toshkent MCHJ jamiyati 1",
       "product": "Samsung",
-      "quantity": 20,
+      "quantity": 50,
       "sold_price": 504,
       "price": 1000,
       "id": "1"
