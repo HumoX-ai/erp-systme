@@ -1,7 +1,11 @@
 import { Button } from "@nextui-org/react";
 import { SvgIcon } from "../../../../components/ui/svgIcon";
-import { WareHouseDataTypes } from "../../../warehouse/types";
 
+type WareHouseDataTypes = {
+  id: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
+};
 export const ProductModalCard = ({
   id,
   image,

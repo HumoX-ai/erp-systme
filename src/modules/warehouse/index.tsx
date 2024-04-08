@@ -1,12 +1,12 @@
-import { Outlet } from "react-router-dom";
 import PageLayout from "../../layout/private-layout";
+import RecieveLayout from "./routes";
 
-const WareHouse = () => {
+const ReceiveProduct = () => {
   return (
-    <PageLayout header="Omborxona">
-      <Outlet />
+    <PageLayout header="Mahsulotlarni qabul qilish">
+      <RecieveLayout />
     </PageLayout>
   );
 };
 
-export default WareHouse;
+export default ReceiveProduct;

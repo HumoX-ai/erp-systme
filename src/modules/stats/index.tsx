@@ -1,6 +1,5 @@
 import { ScrollShadow } from "@nextui-org/react";
 import { BarChart } from "../../components/charts/Bar";
-// import { useEffect } from "react";
 import { LineChart } from "../../components/charts/Line";
 import { MdQueryStats } from "react-icons/md";
 import { TbCalendarStats } from "react-icons/tb";
@@ -11,11 +10,17 @@ const StatsPage = () => {
   // useEffect(() => {
   //   document.title = "Statistikalar";
   // }, []);
+
   return (
     <div className="w-full sm:w-[calc(100vw-260px)] h-[100vh] bg-[#F5F7FA] dark:bg-[#2A2A2A]">
       <PageLayout header="Statistikalar">
         <ScrollShadow visibility="bottom">
           <div className="pt-6 h-[92vh] 2xl:h-[94vh]">
+            <h1 className="text-xl font-medium pb-2">
+              Sana oralig'ini tanlang
+            </h1>
+            <div className="flex gap-4"></div>
+
             <h1 className="text-xl font-medium pb-2">Umimiy savdo</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {data.map(({ title, value, icon }, index) => (

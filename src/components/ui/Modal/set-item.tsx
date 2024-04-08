@@ -8,9 +8,9 @@ import {
   Input,
   Spinner,
 } from "@nextui-org/react";
-import { IProduct } from "../../../modules/products/types";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import axios from "axios";
+import { IProduct } from "../../../modules/filials/types";
 
 export default function SetItems({
   open,

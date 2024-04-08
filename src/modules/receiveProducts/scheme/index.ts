@@ -32,4 +32,12 @@ export const brandProductValidationSchema = Yup.object({
   [brandProductFK.key5]: Yup.number()
     .required("Mahsulot sonini kiriting")
     .min(1),
+  [brandProductFK.key6]: Yup.string().required("Brend nomini kiriting!").min(2),
+  [brandProductFK.key7]: Yup.string()
+    .min(2)
+    .max(30)
+    .required("Modeli kiriting!"),
+  [brandProductFK.key8]: Yup.string()
+    .required("Mahsulot haqida ma'lumot!")
+    .min(2),
 });

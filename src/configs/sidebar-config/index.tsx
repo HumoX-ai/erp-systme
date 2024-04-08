@@ -23,32 +23,25 @@ const navigationLinks: {
     role: "all",
   },
   {
-    title: "Mahsulotlar",
-    icon: "product",
-    path: "/products",
-    key: "products",
-    role: "customer",
-  },
-  {
     title: "Statistikalar",
     icon: "statistics",
     path: "/stats",
     key: "stats",
-    role: "admin",
+    role: "all",
   },
   {
     title: "Mahsulotni Qabul qilish",
     icon: "receive-product",
     path: "/receive-product",
     key: "receive-product",
-    role: "admin",
+    role: "all",
   },
   {
     title: "Omborxona",
     icon: "warehouse",
     path: "/warehouse",
     key: "warehouse",
-    role: "admin",
+    role: "all",
   },
   {
     title: "Filiallar",
@@ -62,20 +55,6 @@ const navigationLinks: {
     icon: "employee",
     path: "/employee",
     key: "employee",
-    role: "admin",
-  },
-  {
-    title: "Yetkazilmagan",
-    icon: "undelivered-products",
-    path: "/undelivered-products",
-    key: "undelivered-product",
-    role: "all",
-  },
-  {
-    title: "Yetkazilgan",
-    icon: "delivered-products",
-    path: "/delivered-products",
-    key: "delivered-product",
     role: "all",
   },
   {
@@ -83,14 +62,14 @@ const navigationLinks: {
     icon: "receive-product",
     path: "/sell-products",
     key: "products",
-    role: "admin",
+    role: "all",
   },
   {
     title: "Arxiv",
     icon: "archive",
     path: "/archive",
     key: "archive",
-    role: "admin",
+    role: "all",
   },
 ];
 

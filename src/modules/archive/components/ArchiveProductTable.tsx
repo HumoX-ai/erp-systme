@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CustomTable } from "../../../components";
-import { WareHouseDataTypes } from "../../warehouse/types";
 
+type WareHouseDataTypes = {
+  id: number;
+  [key: string]: any;
+};
 export const ArchiveProductTable = () => {
   const columns = [
     {

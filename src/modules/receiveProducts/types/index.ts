@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ForwardedRef } from "react";
 import { FormikProps } from "formik";
 
@@ -22,6 +23,9 @@ export type BrandProductDataTypes = {
   [brandProductFK.key3]: number | string;
   [brandProductFK.key4]: string | number;
   [brandProductFK.key5]: string | number;
+  [brandProductFK.key6]: string;
+  [brandProductFK.key7]: string;
+  [brandProductFK.key8]: string;
 };
 
 export type PropsRefTypes = ForwardedRef<FormikProps<any>>;

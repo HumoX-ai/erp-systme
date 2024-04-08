@@ -11,8 +11,9 @@ import { putRequest } from "../../../../services/putRequest";
 import { FileUpload } from "../../../../components/shared/FileUpload/FileUpload";
 import { uploadFileForm } from "../../../../utils/uploadFile";
 import { brandProductFK, brandProductIV } from "../../constants";
+import { notifySuccess } from "../../../../components/common/ModalFooter/Toast/react-toast";
 
-const BrendProductForm = forwardRef((_props, innerRef: PropsRefTypes) => {
+const ProductForm = forwardRef((_props, innerRef: PropsRefTypes) => {
   const { setIsLoading, setRefresh } = useBaseStore();
   const { drawer, setDrawer } = useReceiveProduct();
 
@@ -31,6 +32,10 @@ const BrendProductForm = forwardRef((_props, innerRef: PropsRefTypes) => {
             setRefresh: setRefresh,
             path: `brand-products/${id}`,
             values: values,
+          }).then(() => {
+            notifySuccess({
+              message: "Mahsulot muvaffaqiyatli tahrirlandi",
+            });
           });
         } else {
           postRequest({
@@ -38,7 +43,14 @@ const BrendProductForm = forwardRef((_props, innerRef: PropsRefTypes) => {
             setRefresh: setRefresh,
             path: "brand-products",
             values: values,
-          }).then(() => {});
+          }).then(() => {
+            notifySuccess({
+              message: "Mahsulot muvaffaqiyatli qo'shildi",
+            });
+            setDrawer({
+              isOpen: false,
+            });
+          });
         }
 
         setDrawer({
@@ -122,6 +134,27 @@ const BrendProductForm = forwardRef((_props, innerRef: PropsRefTypes) => {
                 variant="faded"
                 component={CustomInput}
               />
+              <Field
+                name={brandProductFK.key6}
+                type="text"
+                placeholder="Brend nomi"
+                variant="faded"
+                component={CustomInput}
+              />
+              <Field
+                name={brandProductFK.key7}
+                type="text"
+                placeholder="Rang"
+                variant="faded"
+                component={CustomInput}
+              />
+              <Field
+                name={brandProductFK.key8}
+                type="text"
+                placeholder="Mahsulot haqida ma'lumot"
+                variant="faded"
+                component={CustomInput}
+              />
             </div>
           </Form>
         );
@@ -130,4 +163,4 @@ const BrendProductForm = forwardRef((_props, innerRef: PropsRefTypes) => {
   );
 });
 
-export default BrendProductForm;
+export default ProductForm;

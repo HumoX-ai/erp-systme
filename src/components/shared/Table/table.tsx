@@ -18,6 +18,7 @@ const CustomTable: FC<CustomTableTypes> = ({
   columns,
   rows,
   onRowClick,
+
   isPagination = true,
   ...rest
 }) => {

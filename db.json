@@ -1,25 +1,52 @@
 {
-  "filial": [],
+  "filial": [
+    {
+      "id": "811c",
+      "filialName": "Toshkent MCHJ jamiyat",
+      "address": "Toshkent Shahar Mirobod tumani",
+      "phone": "+998 93 598 05 39"
+    },
+    {
+      "id": "1270",
+      "filialName": "12",
+      "address": "12",
+      "phone": "12"
+    },
+    {
+      "id": "e362",
+      "filialName": "asd",
+      "address": "as",
+      "phone": "as"
+    },
+    {
+      "id": "6633",
+      "filialName": "asd",
+      "address": "as",
+      "phone": "as"
+    }
+  ],
   "products": [
     {
-      "filialName": "Toshkent MCHJ jamiyati 1",
+      "filialName": "12",
       "product": "Samsung",
-      "quantity": 50,
+      "quantity": 10,
       "sold_price": 504,
       "price": 1000,
       "id": "1"
     },
     {
-      "filialName": "Toshkent MCHJ jamiyati 1",
-      "product": "Iphone 11",
-      "quantity": 20,
+      "filialName": "Toshkent MCHJ jamiyat",
+      "product": "Iphone11",
+      "img": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2F54ee03c4-8506-4781-90de-4a7532983533?alt=media&token=64c2bb4f-66b4-43d9-a746-cc454098febe",
+      "quantity": 61,
       "sold_price": "400",
       "price": "400",
       "id": "6d7f"
     },
     {
-      "filialName": "Toshkent MCHJ jamiyati 1",
+      "filialName": "12",
       "product": "Iphone 12 Pro",
+      "img": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2F54ee03c4-8506-4781-90de-4a7532983533?alt=media&token=64c2bb4f-66b4-43d9-a746-cc454098febe",
       "quantity": 20,
       "sold_price": "450",
       "price": "430",
@@ -59,7 +86,168 @@
       "productName": "Iphone 12",
       "quantity": 5,
       "address": "Toshkent Viloyati",
-      "status": "undelivered"
+      "status": "delivered"
+    }
+  ],
+  "brands": [
+    {
+      "id": "5bd4",
+      "brand_name": "Apple"
+    },
+    {
+      "id": "d36d",
+      "brand_name": "Artel"
+    }
+  ],
+  "brand-products": [
+    {
+      "id": "2ae0",
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2F54ee03c4-8506-4781-90de-4a7532983533?alt=media&token=64c2bb4f-66b4-43d9-a746-cc454098febe",
+      "product_name": "iphone",
+      "price": 100,
+      "sell_price": 130,
+      "count": 10
+    },
+    {
+      "id": "a3e7",
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2F4524fc39-5e81-46d7-a5b7-45f71f21a79b?alt=media&token=b9045aef-e6d1-403b-88a4-b6f26d5cf6d8",
+      "product_name": "Samsung S22",
+      "price": 2000,
+      "sell_price": 1500,
+      "count": 47
+    },
+    {
+      "id": "a9da",
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2Fee1fe045-3d1a-4cea-ac57-80e734936fa4?alt=media&token=c345736e-9642-4eba-a302-182db10f37b7",
+      "product_name": "Samsung S22",
+      "price": 2000,
+      "sell_price": 2020,
+      "count": 986
+    },
+    {
+      "id": "faf9",
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2F585cc7a2-2f0f-49af-ad6e-c453a653b9da?alt=media&token=b0d30497-c7aa-4744-87da-82a906b18e42",
+      "product_name": "21",
+      "price": 12,
+      "sell_price": 12,
+      "count": 21,
+      "brand_name": "21",
+      "color": "21",
+      "description": "sda"
+    },
+    {
+      "id": "6178",
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2F46a3670d-7407-4617-9125-f79d0069c578?alt=media&token=f415d679-3c9e-4c9b-a681-99aaf1971403",
+      "product_name": "112",
+      "price": 11,
+      "sell_price": 112,
+      "count": 12,
+      "brand_name": "12",
+      "color": "121",
+      "description": "22"
+    },
+    {
+      "id": "b87a",
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2F7d88483b-a9c8-4481-99bd-6ad9ebe8c3df?alt=media&token=7da2369c-c128-4caa-bcf7-c4ee3b6d4ea2",
+      "product_name": "wqw",
+      "price": 12,
+      "sell_price": 12,
+      "count": 122,
+      "brand_name": "1212",
+      "color": "121",
+      "description": "12121"
+    }
+  ],
+  "warehouse": [
+    {
+      "id": "7cab",
+      "product_name": "iphone",
+      "price": 111,
+      "sell_price": 111,
+      "brand_name": {
+        "value": "d36d",
+        "label": "Artel"
+      },
+      "count": 6,
+      "color": "212",
+      "description": "12121",
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2Fbcdf521c-e5b2-48b0-8019-7b67d656e76e?alt=media&token=7c2e9620-e498-41c4-a89c-372407f367c2",
+      "status": true
+    },
+    {
+      "id": "ed1c",
+      "product_name": "121",
+      "price": 2122,
+      "sell_price": 212,
+      "brand_name": {
+        "value": "5bd4",
+        "label": "Apple"
+      },
+      "count": 2121,
+      "color": "12",
+      "description": "edeed",
+      "status": true,
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2F3d992da3-3c0f-4d3b-bd96-4f8a56a2dcd3?alt=media&token=80414246-5f0a-4bff-8d48-4cc5a4d2d617"
+    },
+    {
+      "id": "4ed4",
+      "product_name": "w2w2",
+      "price": 23,
+      "sell_price": 233,
+      "brand_name": {
+        "value": "5bd4",
+        "label": "Apple"
+      },
+      "count": 323,
+      "color": "323",
+      "description": "3232332",
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2F23b514a5-c1c6-45d7-8998-3e2110bb89cd?alt=media&token=080654e1-c16b-40e1-9dc3-8718f1c9f011",
+      "status": true
+    },
+    {
+      "id": "00be",
+      "product_name": "2232",
+      "price": 232,
+      "sell_price": 323,
+      "brand_name": {
+        "value": "5bd4",
+        "label": "Apple"
+      },
+      "count": 323,
+      "color": "323",
+      "description": "23ee",
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2F0877ac94-9768-4ae2-b396-7af6f5735abe?alt=media&token=cfad98da-e0a1-44a8-b625-9ceae6222938",
+      "status": true
+    },
+    {
+      "id": "5771",
+      "product_name": "231",
+      "price": 323,
+      "sell_price": 323,
+      "brand_name": {
+        "value": "5bd4",
+        "label": "Apple"
+      },
+      "count": 323,
+      "color": "323",
+      "description": "3232",
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2F2361ad25-f94e-47d5-b308-6357e39120c1?alt=media&token=568bd841-d97e-4448-bc27-c068ea8bfabb",
+      "status": true
+    },
+    {
+      "id": "a9a6",
+      "product_name": "13",
+      "price": 33,
+      "sell_price": 212,
+      "brand_name": {
+        "value": "5bd4",
+        "label": "Apple"
+      },
+      "count": 212,
+      "color": "21",
+      "description": "212",
+      "image": "https://firebasestorage.googleapis.com/v0/b/erp-project-a162b.appspot.com/o/files%2F202ae467-100b-4fd0-a6c4-ef44eeb9744b?alt=media&token=0f8674e3-2277-4adc-b9ce-2c762df9d8c1",
+      "status": true
     }
   ]
 }

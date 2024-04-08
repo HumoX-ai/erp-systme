@@ -1,16 +1,13 @@
 import { Image } from "@nextui-org/react";
-
 import { CustomTable } from "../../../../components";
-import TableDropDown from "../../../../components/shared/TableDropDown/table-drop-down";
-import useBaseStore from "../../../../store/base";
-import { deleteRequest } from "../../../../services/deleteRequest";
 import useReceiveProduct from "../../store";
 import { BrandProductDataTypes } from "../../types";
 import { brandProductFK } from "../../constants";
 
-const BrendProductTable = () => {
-  const { brandProductData, setDrawer } = useReceiveProduct();
-  const { setRefresh } = useBaseStore();
+
+const RecieveProductTable = () => {
+  const { brandProductData } = useReceiveProduct();
+
 
   const columns = [
     {
@@ -55,30 +52,7 @@ const BrendProductTable = () => {
     },
     {
       dataIndex: brandProductFK.key6,
-      label: "Mahsulot brandi",
-    },
-    {
-      dataIndex: "action",
-      label: "Holat",
-      render: (values: BrandProductDataTypes) => {
-        return (
-          <TableDropDown
-            onDelete={() =>
-              values?.id &&
-              deleteRequest({
-                path: `brand-products/${values?.id}`,
-                setRefresh: setRefresh,
-              })
-            }
-            onEdit={() => {
-              setDrawer({
-                isOpen: true,
-                initialValues: values,
-              });
-            }}
-          />
-        );
-      },
+      label: "Modeli",
     },
   ];
 
@@ -87,4 +61,4 @@ const BrendProductTable = () => {
   );
 };
 
-export default BrendProductTable;
+export default RecieveProductTable;

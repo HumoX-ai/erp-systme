@@ -1,4 +1,4 @@
-import { Button, ScrollShadow } from "@nextui-org/react";
+import { ScrollShadow } from "@nextui-org/react";
 import SetItemsFilial from "../components/set-item-filial";
 import { useEffect } from "react";
 import AddItemFilial from "../components/add-item-filial";
@@ -6,6 +6,7 @@ import FilialTable from "../components/filial-table";
 import { getRequest } from "../../../services/getRequest";
 import { deleteRequest } from "../../../services/deleteRequest";
 import useFilialStore from "../store";
+import { HeaderLayout } from "../../../layout/header";
 
 const Filial = () => {
   const { data, setData, setOpen, setChange, selectItem } = useFilialStore();
@@ -40,14 +41,15 @@ const Filial = () => {
 
   return (
     <div>
-      <ScrollShadow className="pt-6 h-[90vh]" visibility="bottom">
-        <div className="flex justify-end pb-4">
-          <Button color="primary" onClick={() => setOpen(true)}>
-            Filial qo'shish
-          </Button>
-          <AddItemFilial />
-          <SetItemsFilial selectItem={selectItem!} />
-        </div>
+      <ScrollShadow className="pt-6 h-[90vh]" visibility="bottom" size={5}>
+        <HeaderLayout
+          isArrow={true}
+          btnText="Filial qo'shish"
+          headerTitle="Mavjud filiallar ro'yxati"
+          onPress={() => setOpen(true)}
+        />
+        <AddItemFilial />
+        <SetItemsFilial selectItem={selectItem!} />
 
         <FilialTable deleteItem={deleteItem} />
       </ScrollShadow>

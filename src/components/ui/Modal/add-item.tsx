@@ -10,8 +10,8 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import { Bounce, ToastContainer, toast } from "react-toastify";
-import { IProduct } from "../../../modules/products/types";
 import "react-toastify/dist/ReactToastify.css";
+import { IProduct } from "../../../modules/filials/types";
 
 const notify = () => {
   toast.success("Mahsulot muvaffaqiyatli qo'shildi", {
@@ -75,6 +75,8 @@ export default function AddItem({
         quantity: Number(quantity),
         price: Number(price),
         sold_price: Number(soldPrice),
+        filialName: "",
+        img: "",
       },
     ]);
     setProduct("");
