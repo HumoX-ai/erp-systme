@@ -26,14 +26,14 @@ export const HeaderLayout = ({
       {headerTitle ? (
         <div className="flex items-center gap-5">
           {isArrow && <BackArrow route={-1} />}
-          <div className="text-xl font-semibold">{headerTitle}</div>
+          <div className="text-lg font-medium">{headerTitle}</div>
         </div>
       ) : null}
 
       {content && content}
 
       {btnText ? (
-        <Button onPress={onPress} color="primary" size="lg">
+        <Button onPress={onPress} color="primary" size="md">
           {btnText}
         </Button>
       ) : null}

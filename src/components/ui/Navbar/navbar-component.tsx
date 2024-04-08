@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link as LinkTo, useNavigate } from "react-router-dom";
 import {
   Navbar,
@@ -13,13 +13,26 @@ import {
   DropdownMenu,
   DropdownItem,
   User,
+  Button,
+  Badge,
 } from "@nextui-org/react";
 import { ThemeSwitcher } from "../ThemeSwitch/theme-switcher";
 import { useAuthStore } from "../../../store/auth";
+import { LuShoppingCart } from "react-icons/lu";
+import useSellProductStore from "../../../modules/sellProducts/store";
 
 const NavbarComponent = ({ header }: { header: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { onSignOutSuccess, user } = useAuthStore();
+
+  const { setDrawer } = useSellProductStore();
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const savedProducts = JSON.parse(localStorage.getItem("products") || "[]");
+    setProducts(savedProducts);
+  }, []);
 
   const menuItems = [
     {
@@ -81,8 +94,14 @@ const NavbarComponent = ({ header }: { header: string }) => {
           </LinkTo>
         </NavbarBrand>
       </NavbarContent>
-
       <NavbarContent justify="end">
+        {userRole === "admin" && (
+          <Badge content={products.length} shape="circle" color="danger">
+            <Button isIconOnly onPress={() => setDrawer({ isOpen: true })}>
+              <LuShoppingCart size={20} />
+            </Button>
+          </Badge>
+        )}
         <div className="hidden sm:flex">
           <ThemeSwitcher />
         </div>
@@ -104,20 +123,14 @@ const NavbarComponent = ({ header }: { header: string }) => {
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">{user?.email}</p>
               </DropdownItem>
-              <DropdownItem key="settings">My Settings</DropdownItem>
-              <DropdownItem key="team_settings">Team Settings</DropdownItem>
-              <DropdownItem key="analytics">Analytics</DropdownItem>
-              <DropdownItem key="system">System</DropdownItem>
-              <DropdownItem key="configurations">Configurations</DropdownItem>
-              <DropdownItem key="help_and_feedback">
-                Help & Feedback
-              </DropdownItem>
+              <DropdownItem key="settings">Sozlamalar</DropdownItem>
+              <DropdownItem key="help_and_feedback">Yordam</DropdownItem>
               <DropdownItem
                 key="logout"
                 color="danger"
                 onClick={() => onSignOutSuccess()}
               >
-                Log Out
+                Tizimdan chiqish
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>

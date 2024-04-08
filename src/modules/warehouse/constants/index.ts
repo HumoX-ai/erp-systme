@@ -1,23 +1,30 @@
-export enum wareHouseFK {
-  key1 = "product_name",
-  key2 = "price",
-  key3 = "sell_price",
-  key4 = "brand_name",
+export enum brandProductFK {
+  key1 = "image",
+  key2 = "product_name",
+  key3 = "price",
+  key4 = "sell_price",
   key5 = "count",
-  key6 = "color",
-  key7 = "description",
-  key8 = "image",
-  key9 = "status",
+  key6 = "brand_name",
+  key7 = "color",
+  key8 = "description",
 }
 
+export enum brandFK {
+  key1 = "brand_name",
+  key2 = "children",
+}
+
+export const brandIV = {
+  [brandFK.key1]: "",
+};
+
 export const brandProductIV = {
-  [wareHouseFK.key1]: "",
-  [wareHouseFK.key2]: "",
-  [wareHouseFK.key3]: "",
-  [wareHouseFK.key4]: { label: null, value: null },
-  [wareHouseFK.key5]: "",
-  [wareHouseFK.key6]: "",
-  [wareHouseFK.key7]: "",
-  [wareHouseFK.key8]: "",
-  [wareHouseFK.key9]: true,
+  [brandProductFK.key1]: null,
+  [brandProductFK.key2]: "",
+  [brandProductFK.key3]: "",
+  [brandProductFK.key4]: "",
+  [brandProductFK.key5]: "",
+  [brandProductFK.key6]: "",
+  [brandProductFK.key7]: "",
+  [brandProductFK.key8]: "",
 };

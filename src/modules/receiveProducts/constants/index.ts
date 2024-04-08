@@ -5,6 +5,8 @@ export enum brandProductFK {
   key4 = "sell_price",
   key5 = "count",
   key6 = "brand_name",
+  key7 = "color",
+  key8 = "description",
 }
 
 export enum brandFK {
@@ -22,4 +24,7 @@ export const brandProductIV = {
   [brandProductFK.key3]: "",
   [brandProductFK.key4]: "",
   [brandProductFK.key5]: "",
+  [brandProductFK.key6]: "",
+  [brandProductFK.key7]: "",
+  [brandProductFK.key8]: "",
 };

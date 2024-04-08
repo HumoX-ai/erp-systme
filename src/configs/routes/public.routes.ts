@@ -7,12 +7,7 @@ export const protectedRoutes = [
     component: lazy(() => import("../../modules/dashboard/index")),
     children: [],
   },
-  {
-    key: "products",
-    path: "/products",
-    component: lazy(() => import("../../modules/products/index")),
-    children: [],
-  },
+
   {
     key: "statistics",
     path: "/stats",
@@ -28,14 +23,14 @@ export const protectedRoutes = [
         key: "brands",
         childrenPath: "/brands",
         component: lazy(
-          () => import("../../modules/receiveProducts/routes/ProductBrends")
+          () => import("../../modules/receiveProducts/routes/checkProducts")
         ),
       },
       {
         key: "products",
         childrenPath: "/products",
         component: lazy(
-          () => import("../../modules/receiveProducts/routes/BrendProducts")
+          () => import("../../modules/receiveProducts/routes/OrderProducts")
         ),
       },
     ],
@@ -49,14 +44,7 @@ export const protectedRoutes = [
         key: "main",
         childrenPath: "/",
         component: lazy(
-          () => import("../../modules/warehouse/routes/WareHouse")
-        ),
-      },
-      {
-        key: "form",
-        childrenPath: "/form",
-        component: lazy(
-          () => import("../../modules/warehouse/routes/WareHouseForm")
+          () => import("../../modules/warehouse/routes/WarehouseOrder")
         ),
       },
     ],
@@ -91,20 +79,6 @@ export const protectedRoutes = [
     key: "employee",
     path: "/employee",
     component: lazy(() => import("../../modules/employee/index")),
-  },
-  {
-    key: "undeliveredProducts",
-    path: "/undelivered-products",
-    component: lazy(
-      () => import("../../modules/cashier/undelivered-products.tsx")
-    ),
-  },
-  {
-    key: "deliveredProducts",
-    path: "/delivered-products",
-    component: lazy(
-      () => import("../../modules/cashier/delivered-products.tsx")
-    ),
   },
   {
     key: "products",

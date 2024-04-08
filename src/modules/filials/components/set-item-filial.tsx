@@ -27,7 +27,7 @@ export default function SetItemsFilial({
   const { setRefresh } = useBaseStore();
 
   return (
-    <Modal isOpen={openModal} onOpenChange={setOpenModal} placement="top">
+    <Modal isOpen={openModal} onOpenChange={setOpenModal} placement="center">
       <ModalContent>
         <Formik
           initialValues={{

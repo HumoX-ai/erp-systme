@@ -20,6 +20,7 @@ interface FilialState {
 const useFilialStore = create<FilialState>()((set, get) => ({
   data: [],
   setData: (data) => set({ data }),
+
   open: false,
   setOpen: (open) => set({ open }),
   openModal: false,

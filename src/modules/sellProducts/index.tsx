@@ -1,7 +1,6 @@
-import { useEffect } from "react";
-import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
+import { useEffect, useState } from "react";
+import { ScrollShadow, Select, SelectItem } from "@nextui-org/react";
 
-import { CustomSearch } from "../../components/shared/Search/Search";
 import { HeaderLayout } from "../../layout/header";
 import PageLayout from "../../layout/private-layout";
 import { getRequest } from "../../services/getRequest";
@@ -9,12 +8,23 @@ import useSellProductStore from "./store";
 import ProductCards from "./container/ProductCards";
 import useBaseStore from "../../store/base";
 import { SvgIcon } from "../../components/ui/svgIcon";
+import { CustomSearch } from "../../components/shared/Search/Search";
+import { useDebounce } from "use-debounce";
 import MarketModal from "./container/MarketModal";
 
 const SellProduct = () => {
   const { refresh } = useBaseStore();
-  const { setBrandSelectData, brandSelectData, setProductData, setDrawer } =
-    useSellProductStore();
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
+
+  const {
+    setBrandSelectData,
+    brandSelectData,
+    setProductData,
+    setDrawer,
+    selectBrandId,
+    setSelectedBrandId,
+  } = useSellProductStore();
 
   useEffect(() => {
     getRequest({
@@ -22,14 +32,18 @@ const SellProduct = () => {
       setData: setBrandSelectData,
     });
     getRequest({
-      path: "warehouse",
+      path: `warehouse?product_name=${debouncedSearchTerm}`,
       setData: setProductData,
     });
-  }, [setBrandSelectData, setProductData, refresh]);
+  }, [debouncedSearchTerm, setBrandSelectData, setProductData, refresh]);
+
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+  };
 
   return (
     <PageLayout
-      header="Mahsulotlar ro’yxati"
+      header="Mahsulotlar ro'yxati"
       headerComponent={
         <div
           className="group bg-[#F5F7FA] p-3 rounded-full transition-all cursor-pointer hover:bg-[#e1e2ed]"
@@ -42,36 +56,33 @@ const SellProduct = () => {
         </div>
       }
     >
-      <HeaderLayout
-        content={
-          <>
-            <CustomSearch
-              size="md"
-              className="w-1/6"
-              placeholder="Qidirish..."
-            />
-            <Autocomplete
-              defaultItems={brandSelectData?.map((items) => ({
-                value: items?.id,
-                label: items?.brand_name,
-              }))}
-              placeholder="Filter"
-              className="max-w-xs"
-              variant="faded"
-              size="md"
-            >
-              {(item) => (
-                <AutocompleteItem key={item.value}>
-                  {item.label}
-                </AutocompleteItem>
-              )}
-            </Autocomplete>
-          </>
-        }
-        position="between"
-      />
-      <ProductCards />
-      <MarketModal />
+      <ScrollShadow className="pt-6 h-[90vh]" visibility="bottom" size={5}>
+        <HeaderLayout
+          content={
+            <>
+              <CustomSearch
+                onSearch={handleSearch}
+                placeholder="Mahsulot qidirish"
+                className="max-w-xs"
+              />
+              <Select label="Select" className="max-w-xs">
+                {brandSelectData?.map((item) => (
+                  <SelectItem
+                    key={item.id}
+                    value={selectBrandId}
+                    onClick={() => setSelectedBrandId(item.id)}
+                  >
+                    {item.brand_name}
+                  </SelectItem>
+                ))}
+              </Select>
+            </>
+          }
+          position="between"
+        />
+        <ProductCards />
+        <MarketModal />
+      </ScrollShadow>
     </PageLayout>
   );
 };

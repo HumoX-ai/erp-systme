@@ -1,14 +1,15 @@
-import { Button, ScrollShadow, useDisclosure } from "@nextui-org/react";
+import { ScrollShadow, useDisclosure } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { IFilial } from "../types";
 import ProductTable from "../components/product-table";
 import AddItemProduct from "../components/add-item-product";
 import useSearchparams from "../../../utils/hooks/useSearchParams";
 import { getRequest } from "../../../services/getRequest";
+import { HeaderLayout } from "../../../layout/header";
 
 const FilialProductPage = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { setSearchParams, searchParams } = useSearchparams();
+  const { searchParams } = useSearchparams();
   const [data, setData] = useState<IFilial | null>(null);
 
   useEffect(() => {
@@ -27,18 +28,13 @@ const FilialProductPage = () => {
   console.log();
 
   return (
-    <ScrollShadow className="pt-6 h-[90vh]" visibility="bottom">
-      <div className="block md:flex space-y-2 items-center justify-between">
-        <h1
-          className="text-lg font-medium"
-          onClick={() => setSearchParams("name", "Ibrohim")}
-        >
-          {data?.filialName}dagi mavjud mahsulotlar
-        </h1>
-        <Button color="primary" onPress={onOpen}>
-          Mahsulot biriktirish
-        </Button>
-      </div>
+    <ScrollShadow className="pt-6 h-[90vh]" visibility="bottom" size={5}>
+      <HeaderLayout
+        isArrow={true}
+        btnText="Mahsulot biriktirish"
+        headerTitle={`${data?.filialName}dagi mavjud mahsulotlar`}
+        onPress={() => onOpen()}
+      />
       <ProductTable filialName={data?.filialName as string} />
       <AddItemProduct
         filialName={data?.filialName as string}

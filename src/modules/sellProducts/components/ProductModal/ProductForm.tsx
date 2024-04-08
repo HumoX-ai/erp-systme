@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Field, Form, Formik } from "formik";
 import { PropsRefTypes } from "../../../receiveProducts/types";
 import CustomInput from "../../../../components/common/FormikField/formik-field";
 import { Tab, Tabs } from "@nextui-org/react";
+import { useState } from "react";
 
 export const ProductForm = ({ innerRef }: { innerRef: PropsRefTypes }) => {
   const tabs = [
@@ -15,13 +17,26 @@ export const ProductForm = ({ innerRef }: { innerRef: PropsRefTypes }) => {
     },
   ];
 
-  const handleSubmit = () => {};
+  const [selectedLocation, setSelectedLocation] = useState("");
+
+  const handleSubmit = () => {
+    // Ma'lumotlarni yuborish logikasi
+  };
+
+  const handleMapClick = (event: any) => {
+    // Google xaritasidan olingan joy ma'lumoti
+    const clickedLocation = {
+      name: "Manzili",
+      value: `${event.latLng.lat()}, ${event.latLng.lng()}`,
+    };
+    setSelectedLocation(clickedLocation.value);
+  };
 
   return (
     <Formik
       innerRef={innerRef}
       enableReinitialize
-      initialValues={{ name: "" }}
+      initialValues={{ name: "", address: selectedLocation }}
       onSubmit={handleSubmit}
       //   validationSchema={brandProductValidationSchema}
     >
@@ -78,6 +93,7 @@ export const ProductForm = ({ innerRef }: { innerRef: PropsRefTypes }) => {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  onClick={handleMapClick}
                 ></iframe>
               </div>
             </div>

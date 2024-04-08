@@ -11,7 +11,7 @@ const CustomModal = ({
   modalBodyChildren,
   modalHeaderTitle,
   modalFooterChildren,
-  position = "top-center",
+  position = "center",
   isOpen,
   setIsOpen,
   size,

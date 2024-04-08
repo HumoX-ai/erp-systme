@@ -6,14 +6,16 @@ import {
   ModalFooter,
   Button,
   Input,
+  Image,
+  ScrollShadow,
 } from "@nextui-org/react";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { IProduct } from "../types";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { putRequest } from "../../../services/putRequest";
 import useBaseStore from "../../../store/base";
+import { getRequest } from "../../../services/getRequest";
 
 export default function AddItemProduct({
   filialName,
@@ -33,15 +35,10 @@ export default function AddItemProduct({
   // console.log(filialName);
 
   useEffect(() => {
-    const getItems = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/products`);
-        setData(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getItems();
+    getRequest({
+      path: `products`,
+      setData: setData,
+    });
   }, []);
 
   const filteredProducts = data.filter((product) =>
@@ -57,16 +54,17 @@ export default function AddItemProduct({
           values: {
             filialName,
             product: selectedProduct.product,
+            img: selectedProduct.img,
             quantity: productQuantity,
             sold_price: selectedProduct.sold_price,
             price: selectedProduct.price,
           },
           setRefresh,
         });
-        const response = await axios.get(
-          `http://localhost:3000/products?filialName=${filialName}`
-        );
-        setData(response.data);
+        getRequest({
+          path: `products?filialName=${filialName}`,
+          setData: setData,
+        });
         navigate(0);
         onOpenChange(false);
       } catch (error) {
@@ -81,7 +79,7 @@ export default function AddItemProduct({
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Modal Title
+                Mahsulot biriktirish
               </ModalHeader>
               <ModalBody>
                 <Input
@@ -99,23 +97,50 @@ export default function AddItemProduct({
                   endContent={<IoSearch size={18} />}
                   type="search"
                 />
-                <div className="w-full bg-default-400/20 dark:bg-default-500/20 rounded-md p-4">
-                  {searchTerm.trim() === ""
-                    ? "Mahsulotlar topilmadi"
-                    : filteredProducts.map((product) => (
-                        <div
-                          key={product.id}
-                          onClick={() => setSelectedProduct(product)}
-                          className={`p-2 rounded-md cursor-pointer ${
-                            selectedProduct?.id === product.id
-                              ? "bg-primary-500 text-white"
-                              : ""
-                          }`}
-                        >
-                          {product.product}
-                        </div>
-                      ))}
-                </div>
+                <ScrollShadow
+                  className={`w-full ${
+                    searchTerm.trim() === "" ? "h-0" : "h-[400px]"
+                  }`}
+                  visibility="bottom"
+                  size={5}
+                >
+                  <div className="w-full bg-default-400/20 dark:bg-default-500/20 rounded-md p-2">
+                    {searchTerm.trim() === ""
+                      ? "Mahsulotlar topilmadi"
+                      : filteredProducts.map((product) => (
+                          <div
+                            key={product.id}
+                            onClick={() => setSelectedProduct(product)}
+                            className={`p-2 rounded-md cursor-pointer ${
+                              selectedProduct?.id === product.id
+                                ? "bg-[#7b7b7b] text-white"
+                                : ""
+                            }`}
+                          >
+                            <div className="flex gap-2">
+                              <Image src={product.img} width={50} />
+                              <div>
+                                <span className="text-sm text-[#c3c3c3]">
+                                  Nomi
+                                </span>
+                                :{" "}
+                                <span className="text-md">
+                                  {product.product}
+                                </span>
+                                <br />
+                                <span className="text-sm text-[#c3c3c3]">
+                                  Mavjud
+                                </span>
+                                :{" "}
+                                <span className="text-md">
+                                  {product.quantity} ta
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                  </div>
+                </ScrollShadow>
                 <Input
                   size="sm"
                   value={productQuantity.toString()}

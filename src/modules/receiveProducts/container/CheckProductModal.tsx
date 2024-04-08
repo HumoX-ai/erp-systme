@@ -5,9 +5,9 @@ import { CustomModalFooter } from "../../../components";
 import CustomModal from "../../../components/common/Modal/Modal";
 import { BrandProductDataTypes } from "../types";
 import useReceiveProduct from "../store";
-import BrendProductForm from "../components/BrendProducts/BrendProductForm";
+import BrendProductForm from "../components/BrendProducts/ProductForm";
 
-const BrendProductModal = () => {
+const CheckProductModal = () => {
   const { setDrawer, drawer } = useReceiveProduct();
   const formRef = useRef<FormikProps<BrandProductDataTypes>>(null);
 
@@ -33,4 +33,4 @@ const BrendProductModal = () => {
   );
 };
 
-export default BrendProductModal;
+export default CheckProductModal;

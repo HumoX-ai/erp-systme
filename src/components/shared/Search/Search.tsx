@@ -8,12 +8,16 @@ export const CustomSearch: React.FC<{
   className?: string;
   style?: React.CSSProperties;
   size?: "sm" | "md" | "lg";
-}> = ({ placeholder, className, style, size }): JSX.Element => {
+  onSearch: (value: string) => void;
+}> = ({ placeholder, className, style, size, onSearch }): JSX.Element => {
   const { setSearchParams, deleteParams, searchParams } = useSearchparams();
 
   const changedSearchValue = (evt: ChangeEvent<HTMLInputElement>) => {
-    if (evt.target.value.length > 0) {
-      setSearchParams("search", evt.target.value);
+    const value = evt.target.value;
+    onSearch(value);
+
+    if (value.length > 0) {
+      setSearchParams("search", value);
     } else {
       deleteParams("search");
     }

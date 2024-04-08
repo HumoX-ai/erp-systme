@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMemo, useState } from "react";
 
 import { Pagination } from "@nextui-org/react";
 import useSellProductStore from "../store";
-import { WareHouseDataTypes } from "../../warehouse/types";
 import { CustomLoading } from "../../../components";
 import useBaseStore from "../../../store/base";
 import { SellProductCards } from "../components/SellProducts/SellProductCards";
+
+type WareHouseDataTypes = {
+  id: number;
+  [key: string]: any;
+};
 
 const ProductCards = () => {
   const { productData } = useSellProductStore();
@@ -26,12 +31,7 @@ const ProductCards = () => {
   return (
     <CustomLoading loading={refresh}>
       <div className="flex flex-col gap-10">
-        <ul className="grid grid-cols-3 gap-5">
-          {products?.map((items) => {
-            return <SellProductCards {...items} />;
-          })}
-        </ul>
-
+        <SellProductCards products={products} />
         {products?.length ? (
           <div className="flex items-center justify-end">
             <Pagination
@@ -46,7 +46,7 @@ const ProductCards = () => {
             />
           </div>
         ) : (
-          ""
+          "Mahsulot topilmadi"
         )}
       </div>
     </CustomLoading>

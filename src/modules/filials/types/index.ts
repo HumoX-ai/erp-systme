@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FormikProps } from "formik";
+import { ForwardedRef } from "react";
+
 export interface IFilial {
   id: number;
   filialName: string;
@@ -9,6 +13,7 @@ export interface IFilial {
 export interface IProduct {
   id: number;
   filialName: string;
+  img: string;
   product: string;
   quantity: number;
   price: number;
@@ -30,3 +35,5 @@ export interface IProductFormProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setData: React.Dispatch<React.SetStateAction<IProduct[]>>;
 }
+
+export type PropsRefTypes = ForwardedRef<FormikProps<any>>;
