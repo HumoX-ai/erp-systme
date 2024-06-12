@@ -13,14 +13,15 @@ import useFilialStore from "../store";
 
 const FilialTable = ({ deleteItem }: { deleteItem: (id: number) => void }) => {
   const { data, setChange, setSelectItem, setOpenModal } = useFilialStore();
+
   const navigate = useNavigate();
 
   const columns = useMemo(
     () => [
       { label: "#", dataIndex: "index" },
-      { label: "Filial nomi", dataIndex: "filialName" },
+      { label: "Filial nomi", dataIndex: "name" },
       { label: "Manzil", dataIndex: "address" },
-      { label: "Telefon raqam", dataIndex: "phone" },
+      { label: "Telefon raqam", dataIndex: "phone_number" },
       {
         label: "Amallar",
         dataIndex: "actions",

@@ -7,8 +7,8 @@ import useBaseStore from "../../../../store/base";
 import { postRequest } from "../../../../services/postRequest";
 import useReceiveProduct from "../../store";
 import { putRequest } from "../../../../services/putRequest";
-import { brandValidationSchema } from "../../scheme";
 import { brandFK, brandIV } from "../../constants";
+import { brandProductValidationSchema } from "../../scheme";
 
 export type Ref = ForwardedRef<FormikProps<ProductBrendsFormTypes>>;
 
@@ -46,7 +46,7 @@ const ProductBrendsForm = forwardRef((_props, ref: Ref) => {
       enableReinitialize
       initialValues={drawer?.initialValues || brandIV}
       onSubmit={handleSubmit}
-      validationSchema={brandValidationSchema}
+      validationSchema={brandProductValidationSchema}
     >
       <Form>
         <div className="space-y-2">

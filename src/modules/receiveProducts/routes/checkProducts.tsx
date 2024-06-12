@@ -14,7 +14,7 @@ const CheckProducts = () => {
 
   useEffect(() => {
     getRequest({
-      path: "brand-products",
+      path: "manager1/products",
       setData: setBrandProductData,
     });
   }, [refresh, setBrandProductData]);

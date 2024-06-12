@@ -4,22 +4,21 @@ import { ErrorMessage, Field, Formik } from "formik";
 import useBaseStore from "../../../store/base";
 import useFilialStore from "../store";
 import { postRequest } from "../../../services/postRequest";
-import {
-  notifyError,
-  notifySuccess,
-} from "../../../components/common/ModalFooter/Toast/react-toast";
 import { validationSchema } from "../scheme";
 import { forwardRef } from "react";
 import { PropsRefTypes } from "../types";
+import { notifySuccess } from "../../../components/common/ModalFooter/Toast/react-toast";
+import { useNavigate } from "react-router-dom";
 
 const FilialForm = forwardRef((_props, innerRef: PropsRefTypes) => {
   const { setRefresh } = useBaseStore();
-  const { setOpen, addFilial, setIsLoading } = useFilialStore();
+  const { setOpen, setIsLoading } = useFilialStore();
+  const navigate = useNavigate();
 
   const initialValues = {
-    filialName: "",
+    name: "",
     address: "",
-    phone: "",
+    phone_number: "",
   };
 
   const handleSubmit = async (
@@ -29,23 +28,18 @@ const FilialForm = forwardRef((_props, innerRef: PropsRefTypes) => {
     try {
       setIsLoading(true);
       postRequest({
-        path: "filial",
-        values: {
-          filialName: values.filialName,
-          address: values.address,
-          phone: values.phone,
-        },
+        path: "manager3/filial/",
+        values,
         setRefresh,
       });
       setOpen(false);
-      addFilial(values);
       resetForm();
       setIsLoading(false);
       notifySuccess({ message: "Filial muvaffaqiyatli qo'shildi" });
+      navigate("/filials");
     } catch (error) {
       console.log(error);
       setIsLoading(false);
-      notifyError({ message: "Filial qo'shishda xatolik yuz berdi" });
     }
   };
 
@@ -62,13 +56,13 @@ const FilialForm = forwardRef((_props, innerRef: PropsRefTypes) => {
           <div>
             <Field
               type="text"
-              name="filialName"
+              name="name"
               as={Input}
               size="sm"
               placeholder="Filial nomi"
             />
             <ErrorMessage
-              name="filialName"
+              name="name"
               className="text-red-500 text-sm"
               component="p"
             />
@@ -90,13 +84,13 @@ const FilialForm = forwardRef((_props, innerRef: PropsRefTypes) => {
           <div>
             <Field
               type="text"
-              name="phone"
+              name="phone_number"
               as={Input}
               size="sm"
               placeholder="Telefon raqam"
             />
             <ErrorMessage
-              name="phone"
+              name="phone_number"
               className="text-red-500 text-sm"
               component="p"
             />

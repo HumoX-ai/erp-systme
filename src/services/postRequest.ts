@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import appConfig from "../configs/app.config";
+import Cookies from "js-cookie";
 
 export const postRequest = async ({
   path,
@@ -21,6 +22,9 @@ export const postRequest = async ({
   try {
     await axios.post(`${appConfig.apiPrefix}/${path}`, values, {
       params: params,
+      headers: {
+        Authorization: `Bearer ${Cookies.get("accessToken")}`,
+      },
     });
   } catch (error) {
     console.log(error);

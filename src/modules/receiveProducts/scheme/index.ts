@@ -1,43 +1,32 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Yup from "yup";
-import { brandFK, brandProductFK } from "../constants";
 
-export const brandValidationSchema = Yup.object().shape({
-  [brandFK.key1]: Yup.string().required("Brand nomini kiriting!"),
-});
-
-export const brandProductValidationSchema = Yup.object({
-  [brandProductFK.key1]: Yup.mixed()
-    .required("Rasm tanlang!")
+export const brandProductValidationSchema = Yup.object().shape({
+  background_img: Yup.mixed()
+    .required("Background image is required")
     .test(
-      "FILE_TYPE",
-      "PNG yoki JPEG formatdan foydalaning!",
-      (value: any) => value && ["image/png", "image/jpeg"].includes(value?.type)
+      "fileType",
+      "Unsupported file format. Please upload a JPG, PNG or GIF file.",
+      (value) => {
+        if (!value) return false; // Return false if no file is provided
+        const allowedFormats = ["image/jpeg", "image/png", "image/gif"];
+        const fileType = value instanceof File ? value.type : "";
+        return allowedFormats.includes(fileType);
+      }
     ),
-  // .test(
-  //   "FILE_SIZE",
-  //   "Tanlangan fayl hajmi katta! (maksimum 1 mb)",
-  //   (value: any) => {
-  //     value?.size && value?.size <= 1024 * 1024;
-  //   }
-  // ),
-  [brandProductFK.key2]: Yup.string()
-    .required("Mahsulot nomini kiriting!")
-    .min(2)
-    .max(30),
-  [brandProductFK.key3]: Yup.number().required("Tan narxini kiriting!").min(1),
-  [brandProductFK.key4]: Yup.number()
-    .required("Sotuv narxini kiriting!")
-    .min(1),
-  [brandProductFK.key5]: Yup.number()
-    .required("Mahsulot sonini kiriting")
-    .min(1),
-  [brandProductFK.key6]: Yup.string().required("Brend nomini kiriting!").min(2),
-  [brandProductFK.key7]: Yup.string()
-    .min(2)
-    .max(30)
-    .required("Modeli kiriting!"),
-  [brandProductFK.key8]: Yup.string()
-    .required("Mahsulot haqida ma'lumot!")
-    .min(2),
+  name: Yup.string().required("Product name is required"),
+  first_price: Yup.number()
+    .required("First price is required")
+    .positive("First price must be a positive number"),
+  sale_price: Yup.number()
+    .required("Sale price is required")
+    .positive("Sale price must be a positive number"),
+  stock: Yup.number()
+    .required("Stock quantity is required")
+    .integer("Stock quantity must be an integer")
+    .min(0, "Stock quantity cannot be negative"),
+
+  brand: Yup.string().required("Brand is required"),
+  where_to: Yup.string().required("Where to is required"),
+  color: Yup.string().required("Color is required"),
+  description: Yup.string().required("Description is required"),
 });

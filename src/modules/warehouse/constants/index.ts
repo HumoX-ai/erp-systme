@@ -1,6 +1,6 @@
 export enum brandProductFK {
   key1 = "image",
-  key2 = "product_name",
+  key2 = "name",
   key3 = "price",
   key4 = "sell_price",
   key5 = "count",

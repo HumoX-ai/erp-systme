@@ -4,6 +4,10 @@ import { PropsWithChildren } from "react";
 import { StateCreator } from "zustand";
 import { PersistOptions } from "zustand/middleware";
 
+export interface BrandDataTypes {
+  id: number;
+  name: string;
+}
 export interface UserInfo {
   id: string | number;
   email: string;

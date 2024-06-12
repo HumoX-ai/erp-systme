@@ -8,8 +8,6 @@ import useBaseStore from "../../../../store/base";
 import { postRequest } from "../../../../services/postRequest";
 import useReceiveProduct from "../../store";
 import { putRequest } from "../../../../services/putRequest";
-import { uploadFileForm } from "../../../../utils/uploadFile";
-import { brandProductFK, brandProductIV } from "../../constants";
 
 const ProductForm = forwardRef((_props, innerRef: PropsRefTypes) => {
   const { setIsLoading, setRefresh } = useBaseStore();
@@ -22,31 +20,28 @@ const ProductForm = forwardRef((_props, innerRef: PropsRefTypes) => {
 
     if (typeof file !== "string") {
       setIsLoading(true);
-      uploadFileForm({ file })?.then((url) => {
-        values["image"] = url as string | File;
-        if (id) {
-          putRequest({
-            setButtonLoading: setIsLoading,
-            setRefresh: setRefresh,
-            path: `brand-products/${id}`,
-            values: values,
-          });
-        } else {
-          postRequest({
-            setButtonLoading: setIsLoading,
-            setRefresh: setRefresh,
-            path: "brand-products",
-            values: values,
-          }).then(() => {
-            setDrawer({
-              isOpen: false,
-            });
-          });
-        }
-
-        setDrawer({
-          isOpen: false,
+      if (id) {
+        putRequest({
+          setButtonLoading: setIsLoading,
+          setRefresh: setRefresh,
+          path: `brand-products/${id}`,
+          values: values,
         });
+      } else {
+        postRequest({
+          setButtonLoading: setIsLoading,
+          setRefresh: setRefresh,
+          path: "manager2/warehouse_product",
+          values: values,
+        }).then(() => {
+          setDrawer({
+            isOpen: false,
+          });
+        });
+      }
+
+      setDrawer({
+        isOpen: false,
       });
     } else {
       putRequest({
@@ -66,7 +61,7 @@ const ProductForm = forwardRef((_props, innerRef: PropsRefTypes) => {
     <Formik
       innerRef={innerRef}
       enableReinitialize
-      initialValues={drawer?.initialValues || brandProductIV}
+      initialValues={drawer?.initialValues}
       onSubmit={handleSubmit}
       validationSchema={brandProductValidationSchema}
     >
@@ -75,14 +70,14 @@ const ProductForm = forwardRef((_props, innerRef: PropsRefTypes) => {
           <Form>
             <div className="space-y-2">
               <Field
-                name={brandProductFK.key2}
+                name="name"
                 type="text"
                 placeholder="Mahsulot nomi"
                 variant="faded"
                 component={CustomInput}
               />
               <Field
-                name={brandProductFK.key3}
+                name="sale_price"
                 type="number"
                 placeholder="Tan narxi"
                 startContent={
@@ -95,14 +90,14 @@ const ProductForm = forwardRef((_props, innerRef: PropsRefTypes) => {
               />
 
               <Field
-                name={brandProductFK.key5}
+                name="stock"
                 type="number"
                 placeholder="Mahsulot soni"
                 variant="faded"
                 component={CustomInput}
               />
               <Field
-                name={brandProductFK.key6}
+                name="brand_name"
                 type="text"
                 placeholder="Modeli"
                 variant="faded"

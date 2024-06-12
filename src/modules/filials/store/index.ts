@@ -14,10 +14,9 @@ interface FilialState {
   setChange: (change: boolean) => void;
   selectItem?: IFilial;
   setSelectItem: (item: IFilial) => void;
-  addFilial: (filial: IFilial) => void;
 }
 
-const useFilialStore = create<FilialState>()((set, get) => ({
+const useFilialStore = create<FilialState>()((set) => ({
   data: [],
   setData: (data) => set({ data }),
 
@@ -31,7 +30,6 @@ const useFilialStore = create<FilialState>()((set, get) => ({
   setChange: (change) => set({ change }),
   selectItem: undefined,
   setSelectItem: (item) => set({ selectItem: item }),
-  addFilial: (filial) => set({ data: [...get().data, filial] }),
 }));
 
 export default useFilialStore;

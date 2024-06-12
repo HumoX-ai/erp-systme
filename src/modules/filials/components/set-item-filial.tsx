@@ -14,15 +14,15 @@ import useBaseStore from "../../../store/base";
 import { putRequest } from "../../../services/putRequest";
 import useFilialStore from "../store";
 import { IFilial } from "../types";
+import { useNavigate } from "react-router-dom";
 
 export default function SetItemsFilial({
   selectItem,
 }: {
   selectItem: IFilial;
 }) {
-  const { data, setData, isLoading, setIsLoading, openModal, setOpenModal } =
-    useFilialStore();
-  console.log(open);
+  const { isLoading, setIsLoading, openModal, setOpenModal } = useFilialStore();
+  const navigate = useNavigate();
 
   const { setRefresh } = useBaseStore();
 
@@ -31,9 +31,9 @@ export default function SetItemsFilial({
       <ModalContent>
         <Formik
           initialValues={{
-            filialName: selectItem?.filialName || "",
+            name: selectItem?.name || "",
             address: selectItem?.address || "",
-            phone: selectItem?.phone || "",
+            phone_number: selectItem?.phone_number || "",
           }}
           validationSchema={validationSchema}
           onSubmit={async (values, { resetForm }) => {
@@ -41,24 +41,15 @@ export default function SetItemsFilial({
               setIsLoading(true);
 
               putRequest({
-                path: `filial/${selectItem.id}`,
+                path: `manager3/filial/${selectItem.id}/`,
                 values,
                 setRefresh,
               });
 
-              const newData = data.map((item) => {
-                if (item.id === selectItem.id) {
-                  return {
-                    ...item,
-                    ...values,
-                  };
-                }
-                return item;
-              });
-              setData(newData);
               setOpenModal(false);
               resetForm();
               setIsLoading(false);
+              navigate("/filials");
             } catch (error) {
               console.log(error);
             }
@@ -70,9 +61,9 @@ export default function SetItemsFilial({
                 Tahrirlash
               </ModalHeader>
               <ModalBody>
-                <Field type="text" name="filialName" as={Input} />
+                <Field type="text" name="name" as={Input} />
                 <ErrorMessage
-                  name="filialName"
+                  name="name"
                   component="div"
                   className="text-red-500"
                 />
@@ -82,9 +73,9 @@ export default function SetItemsFilial({
                   component="div"
                   className="text-red-500"
                 />
-                <Field type="text" name="phone" as={Input} />
+                <Field type="text" name="phone_number" as={Input} />
                 <ErrorMessage
-                  name="phone"
+                  name="phone_number"
                   component="div"
                   className="text-red-500"
                 />

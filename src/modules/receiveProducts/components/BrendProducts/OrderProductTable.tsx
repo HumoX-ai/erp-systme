@@ -25,12 +25,12 @@ const OrderProductTable = () => {
       dataIndex: brandProductFK.key1,
       label: "Mahsulot rasmi",
       render: (item: BrandProductDataTypes) =>
-        item?.image ? (
+        item?.background_img ? (
           <Image
             className="w-14 h-14 object-contain"
             width={50}
             alt="Receive-product-img!"
-            src={item?.image as string}
+            src={item?.background_img as string}
           />
         ) : (
           "Rasm yuklanmadi!"

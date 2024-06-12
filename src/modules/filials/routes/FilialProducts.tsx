@@ -16,7 +16,7 @@ const FilialProductPage = () => {
     const getItems = async () => {
       try {
         getRequest({
-          path: `filial/${searchParams?.filialId}`,
+          path: `manager3/filial/${searchParams?.filialId}/`,
           setData,
         });
       } catch (error) {
@@ -32,12 +32,12 @@ const FilialProductPage = () => {
       <HeaderLayout
         isArrow={true}
         btnText="Mahsulot biriktirish"
-        headerTitle={`${data?.filialName}dagi mavjud mahsulotlar`}
+        headerTitle={`${data?.address}dagi mavjud mahsulotlar`}
         onPress={() => onOpen()}
       />
-      <ProductTable filialName={data?.filialName as string} />
+      <ProductTable filialName={data?.name as string} />
       <AddItemProduct
-        filialName={data?.filialName as string}
+        filialName={data?.name as string}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
       />

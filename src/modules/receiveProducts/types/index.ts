@@ -11,13 +11,16 @@ export type ProductBrendsFormTypes = {
 };
 
 export type BrandDataTypes = {
+  results: any[];
   id: string | number;
-  [brandFK.key1]: string;
+  name: string;
+  brand_name: string;
   [brandFK.key2]?: [];
 };
 
 export type BrandProductDataTypes = {
   id?: string | number;
+  [key: string]: any;
   [brandProductFK.key1]: string | File;
   [brandProductFK.key2]: string;
   [brandProductFK.key3]: number | string;

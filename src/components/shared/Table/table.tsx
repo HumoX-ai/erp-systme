@@ -30,11 +30,8 @@ const CustomTable: FC<CustomTableTypes> = ({
   const pages = Math.ceil(rows?.length / rowsPerPage);
 
   const items = useMemo(() => {
-    const start = (page - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-
-    return rows?.slice(start, end);
-  }, [page, rows]);
+    return rows;
+  }, [rows]);
 
   return (
     <Table

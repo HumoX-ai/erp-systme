@@ -26,12 +26,12 @@ const CheckProductTable = () => {
       dataIndex: brandProductFK.key1,
       label: "Mahsulot rasmi",
       render: (item: BrandProductDataTypes) =>
-        item?.image ? (
+        item?.background_img ? (
           <Image
             className="w-14 h-14 object-contain"
             width={50}
             alt="Receive-product-img!"
-            src={item?.image as string}
+            src={item?.background_img as string}
           />
         ) : (
           "Rasm yuklanmadi!"
@@ -56,6 +56,9 @@ const CheckProductTable = () => {
     {
       dataIndex: brandProductFK.key6,
       label: "Mahsulot brandi",
+      render: (values: BrandProductDataTypes) => {
+        return values?.brand;
+      },
     },
     {
       dataIndex: "action",
@@ -66,7 +69,7 @@ const CheckProductTable = () => {
             onDelete={() =>
               values?.id &&
               deleteRequest({
-                path: `brand-products/${values?.id}`,
+                path: `manager1/products/${values?.id}`,
                 setRefresh: setRefresh,
               })
             }

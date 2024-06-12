@@ -9,7 +9,7 @@ import { FaRegEyeSlash } from "react-icons/fa6";
 import { useAuthStore } from "../../store/auth";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -36,65 +36,45 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password) {
+    if (!username || !password) {
       setError("Iltimos, email va parolni kiriting");
       return;
     }
     try {
       setLoading(true);
       const response = await axios.post(
-        "https://api.escuelajs.co/api/v1/auth/login",
+        "http://188.166.209.136:8080/API/auth/token/",
         {
-          email,
+          username,
           password,
         }
       );
-      const accessToken = response.data.access_token;
+      const accessToken = response.data.access;
+      console.log(accessToken);
 
-      await handleGetUserInfo(accessToken);
-      // Cookie ga saqlash sozlamalari
-      Cookies.set("accessToken", accessToken, { expires: 7, secure: true });
+      if (accessToken) {
+        // Foydalanuvchi ma'lumotlarini olish o'rniga to'g'ridan-to'g'ri login amalga oshirish
+        onSignInSuccess({
+          id: 0, // id ni backenddan olish mumkin
+          avatar: "", // avatar ni backenddan olish mumkin
+          email: username, // email ni form maydoni qiymatidan olamiz
+          name: "", // ism ni backenddan olish mumkin
+          role: "", // rol ni backenddan olish mumkin
+        });
 
-      window.location.reload();
+        // Cookie ga saqlash sozlamalari
+        Cookies.set("accessToken", accessToken, { expires: 7, secure: true });
+
+        window.location.reload();
+      } else {
+        setError("Foydalanuvchi topilmadi! Qaytadan urinib ko'ring");
+      }
+
       setLoading(false);
     } catch (error) {
       console.error("Login error:", error);
       setLoading(false);
       setError("Foydalanuvchi topilmadi! Qaytadan urinib ko'ring");
-    }
-  };
-
-  const handleGetUserInfo = async (accessToken: string) => {
-    try {
-      const response = await axios.get(
-        "https://api.escuelajs.co/api/v1/auth/profile",
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      const res = response?.data;
-
-      if (res) {
-        onSignInSuccess({
-          id: res?.id,
-          avatar: res?.avatar,
-          email: res?.email,
-          name: res?.name,
-          role: res?.role,
-        });
-      } else {
-        onSignInSuccess({
-          id: 0,
-          avatar: "",
-          email: "",
-          name: "",
-          role: "",
-        });
-      }
-    } catch (error) {
-      console.error("Error getting user info:", error);
     }
   };
 
@@ -111,12 +91,12 @@ const Login = () => {
           {error && <p className="text-red-500 pb-2">{error}</p>}
           <form onSubmit={handleSubmit}>
             <Input
-              type="email"
+              type="text"
               fullWidth
               size="md"
               autoComplete="on"
               label="Email"
-              value={email}
+              value={username}
               onChange={(e) => setEmail(e.target.value)}
             />
             <Spacer y={1} />

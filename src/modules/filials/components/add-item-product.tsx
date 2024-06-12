@@ -32,7 +32,6 @@ export default function AddItemProduct({
   const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
 
   const { setRefresh } = useBaseStore();
-  // console.log(filialName);
 
   useEffect(() => {
     getRequest({

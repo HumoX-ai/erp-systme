@@ -4,10 +4,13 @@ import { ForwardedRef } from "react";
 
 export interface IFilial {
   id: number;
-  filialName: string;
+  name: string;
   address: string;
-  phone: string;
+  phone_number: string;
   quantity: number;
+}
+export interface DataState {
+  results: IFilial[];
 }
 
 export interface IProduct {

@@ -1,24 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChangeEvent } from "react";
-import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
-
 import { PreviewImage } from "../../../modules/receiveProducts/components/BrendProducts/PreviewImage";
 import { SvgIcon } from "../../ui/svgIcon";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCJibfaGj4rWZunTBYDBlCHkUWhBIOPx7M",
-  authDomain: "erp-project-a162b.firebaseapp.com",
-  projectId: "erp-project-a162b",
-  storageBucket: "erp-project-a162b.appspot.com",
-  messagingSenderId: "212731630675",
-  appId: "1:212731630675:web:c412654545576ce9a4a2a6",
-  measurementId: "G-4SXC4MBWZC",
-};
-
-const app = initializeApp(firebaseConfig);
-// eslint-disable-next-line react-refresh/only-export-components
-export const imageDb = getStorage(app);
 
 export const FileUpload = ({
   setFieldValue,
@@ -31,8 +14,9 @@ export const FileUpload = ({
 }) => {
   const uploadChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const file = evt.target.files?.[0] as Blob | Uint8Array | ArrayBuffer;
-    setFieldValue("image", file);
+    setFieldValue("background_image", file);
   };
+  console.log(image);
 
   return (
     <label

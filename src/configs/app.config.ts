@@ -1,4 +1,4 @@
-const URL = import.meta.env.VITE_URL_DEV || "http://localhost:3000";      
+const URL = import.meta.env.VITE_URL_DEV || "http://188.166.209.136:8080/API";      
 
 const appConfig = {
   apiPrefix: URL,
